@@ -89,11 +89,11 @@
   <section class="view" id="view-settings">
     <div class="card">
       <h2>Your vault</h2>
-      <p class="sub">Entries live on this device and sync to your private household repo. Nothing here is ever public.</p>
+      <p class="sub">Entries live on this device and sync to your private data repo (lexis-data). Nothing here is ever public.</p>
       <div class="field"><label>GitHub token (fine-grained, this one repo, Contents read &amp; write)</label>
-        <input type="password" id="setToken" placeholder="github_pat_…" autocomplete="off"><div class="hint">Stored only in this browser. How to make one: see the runbook in the household repo.</div></div>
-      <div class="field"><label>Repo</label><input id="setRepo" value="nikkirouda/household"></div>
-      <div class="field"><label>Data folder</label><input id="setPath" value="fitness/data"></div>
+        <input type="password" id="setToken" placeholder="github_pat_…" autocomplete="off"><div class="hint">Stored only in this browser. How to make one: see the runbook (fitness/STUDIO-RUNBOOK.md).</div></div>
+      <div class="field"><label>Repo</label><input id="setRepo" value="nikkirouda/lexis-data"></div>
+      <div class="field"><label>Data folder</label><input id="setPath" value="data"></div>
       <div class="row wrap"><button class="btn sm" id="btnSync">Sync now</button><button class="btn sm ghost" id="btnTestToken">Test token</button><span class="small muted" id="syncDetail"></span></div>
     </div>
     <div class="card">

@@ -27,13 +27,13 @@ function hashStr(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h
 const defaults = () => ({
   months: {},
   settings: { goal: { low: null, high: null, date: null, waist: null }, treatBudget: null, weekStart: 1, celebrate: true, theme: 'auto', updatedAt: null },
-  sync: { token: '', repo: 'nikkirouda/household', path: 'fitness/data', shas: {}, dirty: {}, settingsDirty: false, lastSync: null, lastError: null },
+  sync: { token: '', repo: 'nikkirouda/lexis-data', path: 'data', shas: {}, dirty: {}, settingsDirty: false, lastSync: null, lastError: null },
   live: null, badgesSeen: [], prCount: 0, lastView: 'home'
 });
 let state = defaults();
 let PROGRAM = null, FOODS = [];
 function load() {
-  try { const raw = localStorage.getItem(LS_KEY); if (raw) { const s = JSON.parse(raw); state = Object.assign(defaults(), s); state.settings = Object.assign(defaults().settings, s.settings || {}); state.settings.goal = Object.assign(defaults().settings.goal, (s.settings || {}).goal || {}); state.sync = Object.assign(defaults().sync, s.sync || {}); } } catch (e) { console.warn('load failed', e); }
+  try { const raw = localStorage.getItem(LS_KEY); if (raw) { const s = JSON.parse(raw); state = Object.assign(defaults(), s); state.settings = Object.assign(defaults().settings, s.settings || {}); state.settings.goal = Object.assign(defaults().settings.goal, (s.settings || {}).goal || {}); state.sync = Object.assign(defaults().sync, s.sync || {}); if (!state.sync.token && state.sync.repo === 'nikkirouda/household') { state.sync.repo = 'nikkirouda/lexis-data'; state.sync.path = 'data'; state.sync.shas = {}; } } } catch (e) { console.warn('load failed', e); }
 }
 function persist() { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) { toast('Could not save on this device: ' + e.message); } }
 
