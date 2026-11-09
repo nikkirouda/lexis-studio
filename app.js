@@ -1,6 +1,6 @@
 /* Lexi's Studio — a private fitness tracker. No data in this file, ever. */
 'use strict';
-const APP_VERSION = '0.1.0';
+const APP_VERSION = '0.1.1';
 const LS_KEY = 'lexi.studio.v1';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -23,6 +23,45 @@ const canon = o => JSON.stringify(sortKeys(o));
 function sortKeys(o) { if (Array.isArray(o)) return o.map(sortKeys); if (o && typeof o === 'object') { const r = {}; Object.keys(o).sort().forEach(k => r[k] = sortKeys(o[k])); return r; } return o; }
 function hashStr(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
 
+/* ---------- data hygiene (security review 2026-11-09) ----------
+   Everything that arrives from the vault, an import file or this device's saved copy is cleaned
+   before the app uses it: month and day keys must look like dates; free-text fields (text, note,
+   name) are kept as written and always escaped when shown; every other string loses the characters
+   that could turn into HTML (< > " ' & `) and is capped in length; numbers must be finite. A planted
+   value therefore can never become markup or script on this page. */
+const FREE_TEXT = new Set(['text', 'note', 'name']);
+const NUMERIC = new Set(['weight', 'waist', 'steps', 'kcal', 'qty', 'minutes', 'wt', 'reps', 'miles', 'yards', 'avgWatts', 'hardPieces', 'packLb', 'incline', 'elevationFt', 'low', 'high', 'treatBudget', 'weekStart', 'prCount']);
+const MONTH_RE = /^\d{4}-\d{2}$/, DAY_RE = /^\d{4}-\d{2}-\d{2}$/;
+function cleanValue(v, key, depth = 0) {
+  if (depth > 8) return null;
+  if (v == null || typeof v === 'boolean') return v;
+  if (typeof v === 'number') return Number.isFinite(v) ? v : null;
+  if (NUMERIC.has(key)) { const n = typeof v === 'string' ? parseFloat(v) : NaN; return Number.isFinite(n) ? n : null; }
+  if (typeof v === 'string') return FREE_TEXT.has(key) ? v.slice(0, 2000) : v.replace(/[<>"'&`\\]/g, '').slice(0, 200);
+  if (Array.isArray(v)) return v.slice(0, 500).map(x => cleanValue(x, key, depth + 1));
+  if (typeof v === 'object') { const o = {}; Object.keys(v).slice(0, 200).forEach(k => { const ck = k.replace(/[^\w.:-]/g, '').slice(0, 64); if (ck && ck !== '__proto__' && ck !== 'constructor' && ck !== 'prototype') o[ck] = cleanValue(v[k], ck, depth + 1); }); return o; }
+  return null;
+}
+function cleanMonth(m) {
+  if (!m || typeof m !== 'object') return null;
+  const out = { version: 1, days: {}, workouts: {}, updatedAt: typeof m.updatedAt === 'string' ? cleanValue(m.updatedAt, 'updatedAt') : '' };
+  Object.entries(m.days || {}).forEach(([k, d]) => { if (DAY_RE.test(k) && d && typeof d === 'object') { const c = cleanValue(d, 'day'); c.meals = Array.isArray(c.meals) ? c.meals.filter(x => x && typeof x === 'object') : []; c.activities = Array.isArray(c.activities) ? c.activities.filter(x => x && typeof x === 'object') : []; out.days[k] = c; } });
+  Object.entries(m.workouts || {}).forEach(([k, w]) => { const ck = String(k).replace(/[^\w.:-]/g, '').slice(0, 64); if (ck && w && typeof w === 'object') { const c = cleanValue(w, 'workout'); if (!DAY_RE.test(c.date || '')) return; c.exercises = Array.isArray(c.exercises) ? c.exercises : []; out.workouts[ck] = c; } });
+  return out;
+}
+function cleanMonths(ms) { const out = {}; Object.entries(ms || {}).forEach(([mk, m]) => { if (MONTH_RE.test(mk)) { const c = cleanMonth(m); if (c) out[mk] = c; } }); return out; }
+function cleanSettings(s) {
+  const d = defaults().settings, c = cleanValue(s && typeof s === 'object' ? s : {}, 'settings');
+  const num = v => (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+  const goal = Object.assign({}, d.goal, c.goal && typeof c.goal === 'object' ? c.goal : {});
+  return Object.assign({}, d, c, {
+    goal: { low: num(goal.low), high: num(goal.high), date: DAY_RE.test(goal.date || '') ? goal.date : null, waist: num(goal.waist) },
+    treatBudget: num(c.treatBudget), weekStart: [0, 1, 5].includes(c.weekStart) ? c.weekStart : 1,
+    celebrate: c.celebrate !== false, theme: ['auto', 'light', 'dark'].includes(c.theme) ? c.theme : 'auto'
+  });
+}
+const REPO_RE = /^[\w.-]+\/[\w.-]+$/, PATH_RE = /^[\w-]+(\/[\w-]+)*$/;
+
 /* ---------- state ---------- */
 const defaults = () => ({
   months: {},
@@ -33,7 +72,7 @@ const defaults = () => ({
 let state = defaults();
 let PROGRAM = null, FOODS = [];
 function load() {
-  try { const raw = localStorage.getItem(LS_KEY); if (raw) { const s = JSON.parse(raw); state = Object.assign(defaults(), s); state.settings = Object.assign(defaults().settings, s.settings || {}); state.settings.goal = Object.assign(defaults().settings.goal, (s.settings || {}).goal || {}); state.sync = Object.assign(defaults().sync, s.sync || {}); if (!state.sync.token && state.sync.repo === 'nikkirouda/household') { state.sync.repo = 'nikkirouda/lexis-data'; state.sync.path = 'data'; state.sync.shas = {}; } } } catch (e) { console.warn('load failed', e); }
+  try { const raw = localStorage.getItem(LS_KEY); if (raw) { const s = JSON.parse(raw); state = Object.assign(defaults(), s); state.settings = Object.assign(defaults().settings, s.settings || {}); state.settings.goal = Object.assign(defaults().settings.goal, (s.settings || {}).goal || {}); state.sync = Object.assign(defaults().sync, s.sync || {}); state.months = cleanMonths(state.months); state.settings = cleanSettings(state.settings); if (!REPO_RE.test(state.sync.repo || '')) state.sync.repo = defaults().sync.repo; if (!PATH_RE.test(state.sync.path || '')) state.sync.path = defaults().sync.path; if (!state.sync.token && state.sync.repo === 'nikkirouda/household') { state.sync.repo = 'nikkirouda/lexis-data'; state.sync.path = 'data'; state.sync.shas = {}; } } } catch (e) { console.warn('load failed', e); }
 }
 function persist() { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) { toast('Could not save on this device: ' + e.message); } }
 
@@ -143,14 +182,14 @@ function lexiLine(f) {
 let syncTimer = null, syncing = false;
 function scheduleSync() { if (!state.sync.token) { setSyncUI(); return; } clearTimeout(syncTimer); syncTimer = setTimeout(() => syncAll(), 2500); setSyncUI(); }
 function ghHeaders() { return { Authorization: `Bearer ${state.sync.token}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }; }
-function ghUrl(p) { return `https://api.github.com/repos/${state.sync.repo}/contents/${state.sync.path}${p ? '/' + p : ''}`; }
+function ghUrl(p) { if (!REPO_RE.test(state.sync.repo) || !PATH_RE.test(state.sync.path) || (p && !/^[\w.-]+$/.test(p))) throw new Error('bad vault address'); return `https://api.github.com/repos/${state.sync.repo}/contents/${state.sync.path}${p ? '/' + p : ''}`; }
 const b64enc = s => btoa(String.fromCharCode(...new TextEncoder().encode(s)));
 const b64dec = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g, '')), c => c.charCodeAt(0)));
 async function ghGet(file) { const r = await fetch(ghUrl(file), { headers: ghHeaders() }); if (r.status === 404) return null; if (!r.ok) throw new Error(`GET ${file}: ${r.status}`); const j = await r.json(); return { sha: j.sha, data: JSON.parse(b64dec(j.content)) }; }
 async function ghPut(file, obj, sha, message) { const body = { message, content: b64enc(JSON.stringify(obj, null, 1)), committer: { name: "Lexi's Studio", email: '102565410+nikkirouda@users.noreply.github.com' } }; if (sha) body.sha = sha; const r = await fetch(ghUrl(file), { method: 'PUT', headers: Object.assign({ 'Content-Type': 'application/json' }, ghHeaders()), body: JSON.stringify(body) }); if (!r.ok) { const t = await r.text().catch(() => ''); const e = new Error(`PUT ${file}: ${r.status}`); e.status = r.status; e.detail = t; throw e; } const j = await r.json(); return j.content.sha; }
 function mergeMonth(local, remote) {
   const out = { version: 1, days: {}, workouts: {}, updatedAt: '' };
-  const L = local || { days: {}, workouts: {} }, R = remote || { days: {}, workouts: {} };
+  const L = cleanMonth(local) || { days: {}, workouts: {} }, R = cleanMonth(remote) || { days: {}, workouts: {} };
   new Set([...Object.keys(L.days || {}), ...Object.keys(R.days || {})]).forEach(k => { const a = L.days[k], b = R.days[k]; out.days[k] = !a ? b : !b ? a : ((a.updatedAt || '') >= (b.updatedAt || '') ? a : b); });
   new Set([...Object.keys(L.workouts || {}), ...Object.keys(R.workouts || {})]).forEach(k => { const a = L.workouts[k], b = R.workouts[k]; out.workouts[k] = !a ? b : !b ? a : ((a.updatedAt || '') >= (b.updatedAt || '') ? a : b); });
   out.updatedAt = [L.updatedAt || '', R.updatedAt || ''].sort().pop();
@@ -179,7 +218,7 @@ async function syncAll(manual) {
     }
     // settings
     const rs = await ghGet('settings.json'); const ls = state.settings;
-    if (rs && (!ls.updatedAt || (rs.data.updatedAt || '') > ls.updatedAt) && !state.sync.settingsDirty) { state.settings = Object.assign(defaults().settings, rs.data); applyTheme(); }
+    if (rs && (!ls.updatedAt || (rs.data.updatedAt || '') > ls.updatedAt) && !state.sync.settingsDirty) { state.settings = cleanSettings(rs.data); applyTheme(); }
     else if (state.sync.settingsDirty || !rs) { await ghPut('settings.json', state.settings, rs && rs.sha, 'Studio: settings'); state.sync.settingsDirty = false; }
     state.sync.lastSync = nowISO(); state.sync.lastError = null; persist(); setSyncUI(); render();
     if (manual) toast('Synced to your vault ✓');
@@ -246,9 +285,9 @@ function dayList(k) {
   if (d && d.weight != null) items.push(`<li><span class="ico">⚖️</span><div class="t"><b>Weighed in</b><span>${k === todayKey() ? 'this morning' : fmtDate(k)}</span></div><span class="k">${d.weight} lb</span><button class="x" data-del="weight">×</button></li>`);
   if (d && d.waist != null) items.push(`<li><span class="ico">📏</span><div class="t"><b>Waist tape</b><span>at the navel</span></div><span class="k">${d.waist} in</span><button class="x" data-del="waist">×</button></li>`);
   if (d && d.steps != null) items.push(`<li><span class="ico">👟</span><div class="t"><b>Steps</b></div><span class="k">${d.steps.toLocaleString()}</span><button class="x" data-del="steps">×</button></li>`);
-  ws.forEach(w => items.push(`<li><span class="ico">🏋️</span><div class="t"><b>${esc(PROGRAM.cards[w.card]?.title || 'Gym')}</b><span>${(w.exercises || []).filter(e => e.done).length} movements${w.prs && w.prs.length ? ' · ' + w.prs.length + ' PR' + (w.prs.length > 1 ? 's' : '') : ''}${w.minutes ? ' · ' + w.minutes + ' min' : ''}</span></div><span class="k">${w.feel || ''}</span><button class="x" data-delw="${w.id}">×</button></li>`));
+  ws.forEach(w => items.push(`<li><span class="ico">🏋️</span><div class="t"><b>${esc(PROGRAM.cards[w.card]?.title || 'Gym')}</b><span>${(w.exercises || []).filter(e => e.done).length} movements${w.prs && w.prs.length ? ' · ' + w.prs.length + ' PR' + (w.prs.length > 1 ? 's' : '') : ''}${w.minutes ? ' · ' + w.minutes + ' min' : ''}</span></div><span class="k">${esc(w.feel || '')}</span><button class="x" data-delw="${w.id}">×</button></li>`));
   (d ? d.activities : []).forEach(a => items.push(`<li><span class="ico">${actIcon(a.type)}</span><div class="t"><b>${esc(actName(a.type))}</b><span>${esc(actSummary(a))}</span></div><button class="x" data-dela="${a.id}">×</button></li>`));
-  (d ? d.meals : []).forEach(m => items.push(`<li><span class="ico">${m.treat ? '🍺' : '🍽️'}</span><div class="t"><b>${esc(m.text)}${m.qty > 1 ? ' ×' + m.qty : ''}</b><span>${m.t || ''}</span></div><span class="k">${m.kcal ? (m.verified === false ? '~' : '') + Math.round(m.kcal) + ' kcal' : ''}</span><button class="x" data-delm="${m.id}">×</button></li>`));
+  (d ? d.meals : []).forEach(m => items.push(`<li><span class="ico">${m.treat ? '🍺' : '🍽️'}</span><div class="t"><b>${esc(m.text)}${m.qty > 1 ? ' ×' + m.qty : ''}</b><span>${esc(m.t || '')}</span></div><span class="k">${m.kcal ? (m.verified === false ? '~' : '') + Math.round(m.kcal) + ' kcal' : ''}</span><button class="x" data-delm="${m.id}">×</button></li>`));
   const html = items.length ? `<ul class="list" data-day="${k}">${items.join('')}</ul>` : `<div class="empty">Nothing on the record for this day yet.</div>`;
   setTimeout(() => bindDeletes(k), 0);
   return html;
@@ -481,8 +520,8 @@ function renderSettings() {
 }
 function bindSettings() {
   $('#setToken').onchange = e => { state.sync.token = e.target.value.trim(); state.sync.lastError = null; persist(); setSyncUI(); if (state.sync.token) syncAll(true); };
-  $('#setRepo').onchange = e => { state.sync.repo = e.target.value.trim(); state.sync.shas = {}; persist(); };
-  $('#setPath').onchange = e => { state.sync.path = e.target.value.trim().replace(/^\/|\/$/g, ''); state.sync.shas = {}; persist(); };
+  $('#setRepo').onchange = e => { const v = e.target.value.trim(); if (!REPO_RE.test(v)) { toast('That does not look like owner/repo.'); e.target.value = state.sync.repo; return; } state.sync.repo = v; state.sync.shas = {}; persist(); };
+  $('#setPath').onchange = e => { const v = e.target.value.trim().replace(/^\/|\/$/g, ''); if (!PATH_RE.test(v)) { toast('Folder names: letters, numbers, - and _ only.'); e.target.value = state.sync.path; return; } state.sync.path = v; state.sync.shas = {}; persist(); };
   $('#btnSync').onclick = () => { if (!state.sync.token) return toast('Paste a token first.'); Object.keys(state.months).forEach(mk => state.sync.dirty[mk] = true); state.sync.settingsDirty = true; syncAll(true); };
   $('#btnTestToken').onclick = async () => { if (!state.sync.token) return toast('Paste a token first.'); try { const r = await fetch(`https://api.github.com/repos/${state.sync.repo}`, { headers: ghHeaders() }); if (!r.ok) throw new Error('HTTP ' + r.status); const j = await r.json(); toast(j.permissions && j.permissions.push ? `Token works: ${j.full_name}, ${j.private ? 'private' : 'PUBLIC!'}, can write ✓` : 'Token can read but not write — check Contents: Read and write.'); } catch (e) { toast('Token test failed: ' + e.message); } };
   const g = () => state.settings.goal;
@@ -493,7 +532,7 @@ function bindSettings() {
   $('#setCelebrate').onchange = e => { state.settings.celebrate = e.target.checked; touchSettings(); if (e.target.checked) celebrate('Celebrations on', 'Every PR and new low gets the confetti it earned.', '🎊'); };
   $('#setTheme').onchange = e => { state.settings.theme = e.target.value; touchSettings(); applyTheme(); };
   $('#btnExport').onclick = () => { const blob = new Blob([JSON.stringify({ exportedAt: nowISO(), months: state.months, settings: state.settings }, null, 1)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `lexis-studio-${todayKey()}.json`; a.click(); };
-  $('#fileImport').onchange = async e => { const f = e.target.files[0]; if (!f) return; try { const j = JSON.parse(await f.text()); Object.entries(j.months || {}).forEach(([mk, m]) => { state.months[mk] = mergeMonth(state.months[mk], m); state.sync.dirty[mk] = true; }); if (j.settings && (!state.settings.updatedAt || (j.settings.updatedAt || '') > state.settings.updatedAt)) { state.settings = Object.assign(defaults().settings, j.settings); state.sync.settingsDirty = true; } persist(); scheduleSync(); render(); toast('Imported and merged ✓'); } catch (err) { toast('Could not import: ' + err.message); } };
+  $('#fileImport').onchange = async e => { const f = e.target.files[0]; if (!f) return; try { const j = JSON.parse(await f.text()); Object.entries(j.months || {}).forEach(([mk, m]) => { if (!MONTH_RE.test(mk)) return; state.months[mk] = mergeMonth(state.months[mk], m); state.sync.dirty[mk] = true; }); if (j.settings && (!state.settings.updatedAt || (j.settings.updatedAt || '') > state.settings.updatedAt)) { state.settings = cleanSettings(j.settings); state.sync.settingsDirty = true; } persist(); scheduleSync(); render(); toast('Imported and merged ✓'); } catch (err) { toast('Could not import: ' + err.message); } };
   $('#btnWipe').onclick = () => { if (!confirm('Clear everything on this device? Your vault in the repo is untouched; sync brings it back.')) return; const keep = state.sync; state = defaults(); state.sync = Object.assign(defaults().sync, { token: keep.token, repo: keep.repo, path: keep.path }); persist(); render(); toast('Device cleared.'); };
   $('#syncStatus').onclick = () => show('settings');
 }

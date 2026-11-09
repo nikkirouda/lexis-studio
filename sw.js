@@ -1,5 +1,5 @@
 /* Lexi's Studio — offline worker. App shell: network first, cache fallback. GitHub API never touched. */
-const SHELL = 'studio-shell-v2';
+const SHELL = 'studio-shell-v3';
 const PRECACHE = ['./', 'index.html', 'style.css', 'app.js', 'program.json', 'foods.json', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(SHELL).then(c => c.addAll(PRECACHE)).then(() => self.skipWaiting())); });
