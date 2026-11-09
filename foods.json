@@ -1,0 +1,1365 @@
+[
+ {
+  "id": "protein-shake",
+  "name": "Protein shake (1 scoop whey in water)",
+  "kcal": 109,
+  "portion": "1 scoop (31 g) mixed with water",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2710745 (Nutritional powder mix, protein, NFS), Survey (FNDDS 2021-2023); 352 kcal per 100 g scaled to 31 g",
+  "verified": true,
+  "aliases": [
+   "shake",
+   "whey",
+   "protein",
+   "protein drink",
+   "whey shake"
+  ]
+ },
+ {
+  "id": "berries",
+  "name": "Mixed berries (1 cup)",
+  "kcal": 66,
+  "portion": "1 cup (150 g)",
+  "group": "fruit",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2709271 (Berries, NFS), Survey (FNDDS 2021-2023); 44 kcal per 100 g scaled to 150 g",
+  "verified": true,
+  "aliases": [
+   "berry",
+   "mixed berries",
+   "blueberries",
+   "strawberries",
+   "raspberries"
+  ]
+ },
+ {
+  "id": "beef-jerky",
+  "name": "Beef jerky (1 oz)",
+  "kcal": 116,
+  "portion": "1 oz (28 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 167536 (Snacks, beef jerky, chopped and formed), SR Legacy; 410 kcal per 100 g scaled to 28.35 g",
+  "verified": true,
+  "aliases": [
+   "jerky"
+  ]
+ },
+ {
+  "id": "greek-yogurt",
+  "name": "Greek yogurt, plain (170 g)",
+  "kcal": 114,
+  "portion": "1 container, 6 oz (170 g)",
+  "group": "dairy",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2705421 (Yogurt, Greek, NS as to type of milk, plain), Survey (FNDDS 2021-2023); 67 kcal per 100 g scaled to 170 g",
+  "verified": true,
+  "aliases": [
+   "yogurt",
+   "yoghurt",
+   "greek",
+   "greek yogurt",
+   "plain yogurt"
+  ]
+ },
+ {
+  "id": "grape-nuts",
+  "name": "Grape-Nuts (1/2 cup)",
+  "kcal": 209,
+  "portion": "1/2 cup (58 g)",
+  "group": "grains",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 171647 (Cereals ready-to-eat, POST, GRAPE-NUTS Cereal), SR Legacy; 361 kcal per 100 g scaled to 58 g",
+  "verified": true,
+  "aliases": [
+   "grapenuts",
+   "grape nuts",
+   "grapenut"
+  ]
+ },
+ {
+  "id": "granola",
+  "name": "Granola (1/2 cup)",
+  "kcal": 231,
+  "portion": "1/2 cup (55 g)",
+  "group": "grains",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2708461 (Cereal, granola), Survey (FNDDS 2021-2023); 420 kcal per 100 g scaled to 55 g",
+  "verified": true,
+  "aliases": []
+ },
+ {
+  "id": "milk-2pct",
+  "name": "2% milk (1 cup)",
+  "kcal": 122,
+  "portion": "1 cup, 8 fl oz (244 g)",
+  "group": "dairy",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 171267 (Milk, reduced fat, fluid, 2% milkfat, with added vitamin A and vitamin D), SR Legacy; 50 kcal per 100 g scaled to 244 g",
+  "verified": true,
+  "aliases": [
+   "milk",
+   "2% milk",
+   "2 percent milk",
+   "glass of milk"
+  ]
+ },
+ {
+  "id": "rice-cake",
+  "name": "Rice cake (1 plain)",
+  "kcal": 35,
+  "portion": "1 cake (9 g)",
+  "group": "grains",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 170250 (Snacks, rice cakes, brown rice, plain, unsalted), SR Legacy; 387 kcal per 100 g scaled to 9 g",
+  "verified": true,
+  "aliases": [
+   "ricecake",
+   "rice cakes",
+   "ricecakes"
+  ]
+ },
+ {
+  "id": "mixed-nuts",
+  "name": "Mixed nuts (1 oz)",
+  "kcal": 168,
+  "portion": "1 oz (28 g), about 1/4 cup",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 168599 (Nuts, mixed nuts, dry roasted, with peanuts, with salt added), SR Legacy; 594 kcal per 100 g scaled to 28.35 g",
+  "verified": true,
+  "aliases": [
+   "nuts",
+   "mixed nut",
+   "handful of nuts"
+  ]
+ },
+ {
+  "id": "almonds",
+  "name": "Almonds (1 oz)",
+  "kcal": 164,
+  "portion": "1 oz (28 g), about 23 almonds",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 170567 (Nuts, almonds), SR Legacy; 579 kcal per 100 g scaled to 28.35 g",
+  "verified": true,
+  "aliases": [
+   "almond"
+  ]
+ },
+ {
+  "id": "cheddar",
+  "name": "Cheddar cheese (1 oz)",
+  "kcal": 114,
+  "portion": "1 oz (28 g), one slice or a 1-inch cube",
+  "group": "dairy",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 173414 (Cheese, cheddar (Includes foods for USDA's Food Distribution Program)), SR Legacy; 403 kcal per 100 g scaled to 28.35 g",
+  "verified": true,
+  "aliases": [
+   "cheese",
+   "cheddar cheese",
+   "slice of cheese"
+  ]
+ },
+ {
+  "id": "crackers",
+  "name": "Crackers (5-6)",
+  "kcal": 92,
+  "portion": "5-6 crackers (18 g)",
+  "group": "grains",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2708132 (Crackers, NFS), Survey (FNDDS 2021-2023); 510 kcal per 100 g scaled to 18 g",
+  "verified": true,
+  "aliases": [
+   "cracker"
+  ]
+ },
+ {
+  "id": "salami",
+  "name": "Salami (1 oz)",
+  "kcal": 106,
+  "portion": "1 oz (28 g), about 3 slices",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 174582 (Salami, dry or hard, pork, beef), SR Legacy; 378 kcal per 100 g scaled to 28 g",
+  "verified": true,
+  "aliases": []
+ },
+ {
+  "id": "prosciutto",
+  "name": "Prosciutto (1 oz)",
+  "kcal": 55,
+  "portion": "1 oz (28 g), about 3 thin slices",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2705879 (Ham, prosciutto), Survey (FNDDS 2021-2023); 195 kcal per 100 g scaled to 28.35 g",
+  "verified": true,
+  "aliases": [
+   "proscuitto"
+  ]
+ },
+ {
+  "id": "pastrami",
+  "name": "Pastrami (3 oz)",
+  "kcal": 125,
+  "portion": "3 oz (85 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 170204 (Beef, cured, pastrami), SR Legacy; 147 kcal per 100 g scaled to 85 g",
+  "verified": true,
+  "aliases": []
+ },
+ {
+  "id": "steak",
+  "name": "Steak, sirloin (6 oz cooked)",
+  "kcal": 360,
+  "portion": "6 oz cooked (170 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 169457 (Beef, top sirloin, steak, separable lean and fat, trimmed to 0\" fat, all grades, cooked, broiled), SR Legacy; 212 kcal per 100 g scaled to 170 g",
+  "verified": true,
+  "aliases": [
+   "sirloin",
+   "beef",
+   "sirloin steak"
+  ]
+ },
+ {
+  "id": "chicken-breast",
+  "name": "Chicken breast (6 oz cooked)",
+  "kcal": 281,
+  "portion": "6 oz cooked, skinless (170 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 171477 (Chicken, broilers or fryers, breast, meat only, cooked, roasted), SR Legacy; 165 kcal per 100 g scaled to 170 g",
+  "verified": true,
+  "aliases": [
+   "chicken",
+   "grilled chicken",
+   "chicken breast"
+  ]
+ },
+ {
+  "id": "hamburger",
+  "name": "Hamburger with bun (1)",
+  "kcal": 418,
+  "portion": "1 burger, medium patty on a white bun (145 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2706932 (Hamburger, on white bun, 1 medium patty), Survey (FNDDS 2021-2023); 288 kcal per 100 g scaled to 145 g",
+  "verified": true,
+  "aliases": [
+   "burger",
+   "hamburger",
+   "burgers"
+  ]
+ },
+ {
+  "id": "cheeseburger",
+  "name": "Cheeseburger (1)",
+  "kcal": 488,
+  "portion": "1 cheeseburger, medium patty on a white bun (165 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2706901 (Cheeseburger, on white bun, 1 medium patty), Survey (FNDDS 2021-2023); 296 kcal per 100 g scaled to 165 g",
+  "verified": true,
+  "aliases": [
+   "cheese burger",
+   "cheeseburgers"
+  ]
+ },
+ {
+  "id": "french-fries",
+  "name": "French fries (medium)",
+  "kcal": 452,
+  "portion": "1 medium fast-food order (145 g)",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2709461 (Potato, french fries, fast food), Survey (FNDDS 2021-2023); 312 kcal per 100 g scaled to 145 g",
+  "verified": true,
+  "aliases": [
+   "fries",
+   "frenchfries",
+   "ff"
+  ]
+ },
+ {
+  "id": "bratwurst",
+  "name": "Bratwurst / sausage (1 link)",
+  "kcal": 283,
+  "portion": "1 cooked link (85 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 171620 (Bratwurst, pork, cooked), SR Legacy; 333 kcal per 100 g scaled to 85 g",
+  "verified": true,
+  "aliases": [
+   "brat",
+   "brats",
+   "sausage",
+   "sausages",
+   "bratwurst"
+  ]
+ },
+ {
+  "id": "bacon",
+  "name": "Bacon (2 slices)",
+  "kcal": 108,
+  "portion": "2 slices, pan-fried (23 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 168322 (Pork, cured, bacon, pre-sliced, cooked, pan-fried), SR Legacy; 468 kcal per 100 g scaled to 23 g",
+  "verified": true,
+  "aliases": []
+ },
+ {
+  "id": "eggs",
+  "name": "Eggs (2 large)",
+  "kcal": 155,
+  "portion": "2 large eggs (100 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 173424 (Egg, whole, cooked, hard-boiled), SR Legacy; 155 kcal per 100 g scaled to 100 g",
+  "verified": true,
+  "aliases": [
+   "egg",
+   "2 eggs",
+   "two eggs"
+  ]
+ },
+ {
+  "id": "toast",
+  "name": "Toast, whole wheat (1 slice)",
+  "kcal": 77,
+  "portion": "1 slice (25 g), unbuttered",
+  "group": "grains",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 172689 (Bread, whole-wheat, commercially prepared, toasted), SR Legacy; 306 kcal per 100 g scaled to 25 g",
+  "verified": true,
+  "aliases": [
+   "wheat toast",
+   "bread",
+   "slice of toast"
+  ]
+ },
+ {
+  "id": "tuna",
+  "name": "Tuna, canned in water (1 can)",
+  "kcal": 142,
+  "portion": "1 can, drained (165 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 173709 (Fish, tuna, light, canned in water, drained solids (Includes foods for USDA's Food Distribution Program)), SR Legacy; 86 kcal per 100 g scaled to 165 g",
+  "verified": true,
+  "aliases": [
+   "can of tuna",
+   "tuna fish"
+  ]
+ },
+ {
+  "id": "beets",
+  "name": "Beets (1 cup cooked)",
+  "kcal": 75,
+  "portion": "1 cup sliced, cooked (170 g)",
+  "group": "veg",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 169146 (Beets, cooked, boiled, drained), SR Legacy; 44 kcal per 100 g scaled to 170 g",
+  "verified": true,
+  "aliases": [
+   "beet"
+  ]
+ },
+ {
+  "id": "broccoli",
+  "name": "Broccoli (1 cup cooked)",
+  "kcal": 55,
+  "portion": "1 cup chopped, cooked (156 g)",
+  "group": "veg",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 169967 (Broccoli, cooked, boiled, drained, without salt), SR Legacy; 35 kcal per 100 g scaled to 156 g",
+  "verified": true,
+  "aliases": [
+   "brocolli",
+   "brocoli"
+  ]
+ },
+ {
+  "id": "asparagus",
+  "name": "Asparagus (1 cup)",
+  "kcal": 40,
+  "portion": "1 cup cooked (180 g), about 8 spears",
+  "group": "veg",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 168390 (Asparagus, cooked, boiled, drained), SR Legacy; 22 kcal per 100 g scaled to 180 g",
+  "verified": true,
+  "aliases": []
+ },
+ {
+  "id": "corn-cob",
+  "name": "Corn on the cob (1 ear)",
+  "kcal": 99,
+  "portion": "1 medium ear (103 g kernels)",
+  "group": "veg",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 169999 (Corn, sweet, yellow, cooked, boiled, drained, without salt), SR Legacy; 96 kcal per 100 g scaled to 103 g",
+  "verified": true,
+  "aliases": [
+   "corn",
+   "corn cob",
+   "ear of corn"
+  ]
+ },
+ {
+  "id": "peas",
+  "name": "Peas (1/2 cup)",
+  "kcal": 67,
+  "portion": "1/2 cup cooked (80 g)",
+  "group": "veg",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 170420 (Peas, green, cooked, boiled, drained, without salt), SR Legacy; 84 kcal per 100 g scaled to 80 g",
+  "verified": true,
+  "aliases": [
+   "green peas"
+  ]
+ },
+ {
+  "id": "green-beans",
+  "name": "Green beans (1 cup)",
+  "kcal": 44,
+  "portion": "1 cup cooked (125 g)",
+  "group": "veg",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 169141 (Beans, snap, green, cooked, boiled, drained, without salt), SR Legacy; 35 kcal per 100 g scaled to 125 g",
+  "verified": true,
+  "aliases": [
+   "beans",
+   "string beans",
+   "greenbeans"
+  ]
+ },
+ {
+  "id": "garden-salad",
+  "name": "Garden salad, no dressing (2 cups)",
+  "kcal": 35,
+  "portion": "2 cups (146 g), no dressing",
+  "group": "veg",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2709822 (Lettuce, salad with assorted vegetables including tomatoes and/or carrots, no dressing), Survey (FNDDS 2021-2023); 24 kcal per 100 g scaled to 146 g",
+  "verified": true,
+  "aliases": [
+   "salad",
+   "side salad",
+   "greens"
+  ]
+ },
+ {
+  "id": "coleslaw",
+  "name": "Coleslaw (1/2 cup)",
+  "kcal": 129,
+  "portion": "1/2 cup (110 g)",
+  "group": "veg",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2709815 (Coleslaw), Survey (FNDDS 2021-2023); 117 kcal per 100 g scaled to 110 g",
+  "verified": true,
+  "aliases": [
+   "slaw",
+   "cole slaw"
+  ]
+ },
+ {
+  "id": "avocado",
+  "name": "Avocado (1/2)",
+  "kcal": 161,
+  "portion": "1/2 medium avocado (100 g)",
+  "group": "fruit",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 171705 (Avocados, raw, all commercial varieties), SR Legacy; 160 kcal per 100 g scaled to 100.5 g",
+  "verified": true,
+  "aliases": [
+   "avo",
+   "half avocado",
+   "guac"
+  ]
+ },
+ {
+  "id": "hummus",
+  "name": "Hummus (2 tbsp)",
+  "kcal": 71,
+  "portion": "2 tbsp (30 g)",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 174289 (Hummus, commercial), SR Legacy; 237 kcal per 100 g scaled to 30 g",
+  "verified": true,
+  "aliases": [
+   "humus",
+   "hummous"
+  ]
+ },
+ {
+  "id": "cherries",
+  "name": "Cherries (1 cup)",
+  "kcal": 97,
+  "portion": "1 cup, pitted (154 g)",
+  "group": "fruit",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 171719 (Cherries, sweet, raw), SR Legacy; 63 kcal per 100 g scaled to 154 g",
+  "verified": true,
+  "aliases": [
+   "cherry"
+  ]
+ },
+ {
+  "id": "peach",
+  "name": "Peach (1)",
+  "kcal": 59,
+  "portion": "1 medium (150 g)",
+  "group": "fruit",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 169928 (Peaches, yellow, raw), SR Legacy; 39 kcal per 100 g scaled to 150 g",
+  "verified": true,
+  "aliases": [
+   "peaches"
+  ]
+ },
+ {
+  "id": "nectarine",
+  "name": "Nectarine (1)",
+  "kcal": 62,
+  "portion": "1 medium (142 g)",
+  "group": "fruit",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 169914 (Nectarines, raw), SR Legacy; 44 kcal per 100 g scaled to 142 g",
+  "verified": true,
+  "aliases": [
+   "nectarines"
+  ]
+ },
+ {
+  "id": "mango",
+  "name": "Mango (1 cup)",
+  "kcal": 99,
+  "portion": "1 cup pieces (165 g)",
+  "group": "fruit",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 169910 (Mangos, raw), SR Legacy; 60 kcal per 100 g scaled to 165 g",
+  "verified": true,
+  "aliases": [
+   "mangos",
+   "mangoes"
+  ]
+ },
+ {
+  "id": "grapefruit",
+  "name": "Grapefruit (1/2)",
+  "kcal": 41,
+  "portion": "1/2 medium (128 g)",
+  "group": "fruit",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 173033 (Grapefruit, raw, pink and red and white, all areas), SR Legacy; 32 kcal per 100 g scaled to 128 g",
+  "verified": true,
+  "aliases": [
+   "half grapefruit"
+  ]
+ },
+ {
+  "id": "orange",
+  "name": "Orange (1)",
+  "kcal": 62,
+  "portion": "1 medium (131 g)",
+  "group": "fruit",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 169097 (Oranges, raw, all commercial varieties), SR Legacy; 47 kcal per 100 g scaled to 131 g",
+  "verified": true,
+  "aliases": [
+   "oranges"
+  ]
+ },
+ {
+  "id": "dark-chocolate",
+  "name": "Dark chocolate (1 oz)",
+  "kcal": 170,
+  "portion": "1 oz (28 g), about 3 squares, 70-85% cacao",
+  "group": "sweets",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 170273 (Chocolate, dark, 70-85% cacao solids), SR Legacy; 598 kcal per 100 g scaled to 28.35 g",
+  "verified": true,
+  "aliases": [
+   "choc",
+   "chocolate",
+   "dark choc"
+  ]
+ },
+ {
+  "id": "gummy-bears",
+  "name": "Gummy bears (1 oz)",
+  "kcal": 112,
+  "portion": "1 oz (28 g), about 13 bears",
+  "group": "sweets",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 167989 (Candies, gumdrops, starch jelly pieces), SR Legacy; 396 kcal per 100 g scaled to 28.35 g",
+  "verified": true,
+  "aliases": [
+   "gummies",
+   "gummy",
+   "gummy bear",
+   "gummi bears"
+  ]
+ },
+ {
+  "id": "mms",
+  "name": "M&M's (1.69 oz pack)",
+  "kcal": 236,
+  "portion": "1 regular pack, 1.69 oz (48 g)",
+  "group": "sweets",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 169583 (Candies, MARS SNACKFOOD US, M&M's Milk Chocolate Candies), SR Legacy; 492 kcal per 100 g scaled to 48 g",
+  "verified": true,
+  "aliases": [
+   "m&ms",
+   "m&m",
+   "mms",
+   "m and ms",
+   "m&m's"
+  ]
+ },
+ {
+  "id": "candy",
+  "name": "Candy, generic (1 oz)",
+  "kcal": 122,
+  "portion": "1 oz (28 g)",
+  "group": "sweets",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 2710325 (Candy, NFS), Survey (FNDDS 2021-2023); 429 kcal per 100 g scaled to 28.35 g",
+  "verified": true,
+  "aliases": [
+   "candies",
+   "sweets"
+  ]
+ },
+ {
+  "id": "vanilla-ice-cream",
+  "name": "Vanilla ice cream (1/2 cup)",
+  "kcal": 137,
+  "portion": "1/2 cup (66 g)",
+  "group": "sweets",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 167575 (Ice creams, vanilla), SR Legacy; 207 kcal per 100 g scaled to 66 g",
+  "verified": true,
+  "aliases": [
+   "vanilla",
+   "vanilla icecream"
+  ]
+ },
+ {
+  "id": "ice-cream",
+  "name": "Ice cream (1 cup)",
+  "kcal": 298,
+  "portion": "1 cup (135 g)",
+  "group": "sweets",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 2705629 (Ice cream, NFS), Survey (FNDDS 2021-2023); 221 kcal per 100 g scaled to 135 g",
+  "verified": true,
+  "aliases": [
+   "icecream",
+   "ice-cream",
+   "bowl of ice cream"
+  ]
+ },
+ {
+  "id": "choc-chip-cookie",
+  "name": "Chocolate chip cookie (1 medium)",
+  "kcal": 152,
+  "portion": "1 medium bakery-style cookie (30 g)",
+  "group": "sweets",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 2707910 (Cookie, chocolate chip, made from home recipe or purchased at a bakery), Survey (FNDDS 2021-2023); 505 kcal per 100 g scaled to 30 g",
+  "verified": true,
+  "aliases": [
+   "cookie",
+   "cookies",
+   "choc chip cookie",
+   "chocolate chip"
+  ]
+ },
+ {
+  "id": "glazed-donut",
+  "name": "Glazed donut (1)",
+  "kcal": 253,
+  "portion": "1 yeast-raised glazed doughnut (60 g)",
+  "group": "sweets",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 2708072 (Doughnut, yeast type), Survey (FNDDS 2021-2023); 421 kcal per 100 g scaled to 60 g",
+  "verified": true,
+  "aliases": [
+   "donut",
+   "doughnut",
+   "donuts",
+   "glazed"
+  ]
+ },
+ {
+  "id": "croissant",
+  "name": "Croissant (1)",
+  "kcal": 231,
+  "portion": "1 medium butter croissant (57 g)",
+  "group": "sweets",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 174987 (Croissants, butter), SR Legacy; 406 kcal per 100 g scaled to 57 g",
+  "verified": true,
+  "aliases": [
+   "croissants"
+  ]
+ },
+ {
+  "id": "bagel",
+  "name": "Plain bagel (1)",
+  "kcal": 277,
+  "portion": "1 medium bagel, 3.5-4 inch (105 g), plain",
+  "group": "grains",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 174899 (Bagels, plain, enriched, with calcium propionate (includes onion, poppy, sesame)), SR Legacy; 264 kcal per 100 g scaled to 105 g",
+  "verified": true,
+  "aliases": [
+   "bagels"
+  ]
+ },
+ {
+  "id": "blueberry-muffin",
+  "name": "Blueberry muffin (1)",
+  "kcal": 424,
+  "portion": "1 medium commercial muffin (113 g)",
+  "group": "sweets",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 172765 (Muffins, blueberry, commercially prepared (Includes mini-muffins)), SR Legacy; 375 kcal per 100 g scaled to 113 g",
+  "verified": true,
+  "aliases": [
+   "muffin",
+   "muffins"
+  ]
+ },
+ {
+  "id": "pizza-slice",
+  "name": "Pizza, cheese (1 slice)",
+  "kcal": 285,
+  "portion": "1 slice of a 14-inch regular-crust cheese pizza (107 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 173292 (Fast Food, Pizza Chain, 14\" pizza, cheese topping, regular crust), SR Legacy; 266 kcal per 100 g scaled to 107 g",
+  "verified": true,
+  "aliases": [
+   "pizza",
+   "slice of pizza",
+   "slice"
+  ]
+ },
+ {
+  "id": "tacos",
+  "name": "Tacos, beef (2)",
+  "kcal": 523,
+  "portion": "2 regular beef-and-cheese tacos on corn tortillas (105 g each)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2708515 (Taco, corn tortilla, beef, cheese), Survey (FNDDS 2021-2023); 249 kcal per 100 g scaled to 210 g",
+  "verified": true,
+  "aliases": [
+   "taco",
+   "beef tacos"
+  ]
+ },
+ {
+  "id": "taco-salad",
+  "name": "Taco salad (1)",
+  "kcal": 564,
+  "portion": "1 taco salad with meat (315 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2708508 (Taco or tostada salad with meat), Survey (FNDDS 2021-2023); 179 kcal per 100 g scaled to 315 g",
+  "verified": true,
+  "aliases": [
+   "tacosalad"
+  ]
+ },
+ {
+  "id": "quesadilla",
+  "name": "Quesadilla, cheese (1)",
+  "kcal": 379,
+  "portion": "1 whole 8-inch cheese quesadilla (120 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2708591 (Quesadilla, cheese only), Survey (FNDDS 2021-2023); 316 kcal per 100 g scaled to 120 g",
+  "verified": true,
+  "aliases": [
+   "cheese quesadilla",
+   "quesadillas"
+  ]
+ },
+ {
+  "id": "pasta-tomato",
+  "name": "Pasta with tomato sauce (1.5 cups)",
+  "kcal": 398,
+  "portion": "1.5 cups, home-style (375 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2708831 (Pasta with tomato-based sauce, home recipe), Survey (FNDDS 2021-2023); 106 kcal per 100 g scaled to 375 g",
+  "verified": true,
+  "aliases": [
+   "pasta",
+   "spaghetti",
+   "pasta marinara",
+   "spaghetti marinara"
+  ]
+ },
+ {
+  "id": "chicken-noodle-soup",
+  "name": "Soup, chicken noodle (1 cup)",
+  "kcal": 60,
+  "portion": "1 cup, canned, prepared with water (248 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 172909 (Soup, chicken noodle, canned, prepared with equal volume water), SR Legacy; 24 kcal per 100 g scaled to 248 g",
+  "verified": true,
+  "aliases": [
+   "soup",
+   "chicken soup",
+   "chicken noodle"
+  ]
+ },
+ {
+  "id": "popcorn",
+  "name": "Popcorn, popped (3 cups)",
+  "kcal": 93,
+  "portion": "3 cups air-popped (24 g), no butter",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 167959 (Snacks, popcorn, air-popped), SR Legacy; 387 kcal per 100 g scaled to 24 g",
+  "verified": true,
+  "aliases": [
+   "pop corn"
+  ]
+ },
+ {
+  "id": "pretzels",
+  "name": "Pretzels (1 oz)",
+  "kcal": 109,
+  "portion": "1 oz (28 g), about 5 twists",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 167555 (Snacks, pretzels, hard, plain, salted), SR Legacy; 384 kcal per 100 g scaled to 28.35 g",
+  "verified": true,
+  "aliases": [
+   "pretzel"
+  ]
+ },
+ {
+  "id": "potato-chips",
+  "name": "Potato chips (1 oz)",
+  "kcal": 151,
+  "portion": "1 oz (28 g), about 15 chips",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 169677 (Snacks, potato chips, plain, salted), SR Legacy; 532 kcal per 100 g scaled to 28.35 g",
+  "verified": true,
+  "aliases": [
+   "chips",
+   "crisps"
+  ]
+ },
+ {
+  "id": "spinach-dip",
+  "name": "Spinach dip (1/4 cup)",
+  "kcal": 207,
+  "portion": "1/4 cup (60 g), dip only",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2705625 (Spinach dip, regular), Survey (FNDDS 2021-2023); 345 kcal per 100 g scaled to 60 g",
+  "verified": true,
+  "aliases": [
+   "spinach artichoke dip",
+   "dip"
+  ]
+ },
+ {
+  "id": "beer",
+  "name": "Beer (12 fl oz, regular)",
+  "kcal": 153,
+  "portion": "12 fl oz can/bottle",
+  "group": "drinks",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 168746 (Alcoholic beverage, beer, regular, all), SR Legacy; 43 kcal per 100 g scaled to 356 g",
+  "verified": true,
+  "aliases": [
+   "beers",
+   "a beer",
+   "pint"
+  ]
+ },
+ {
+  "id": "light-beer",
+  "name": "Light beer (12 fl oz)",
+  "kcal": 103,
+  "portion": "12 fl oz can/bottle",
+  "group": "drinks",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 168749 (Alcoholic beverage, beer, light), SR Legacy; 29 kcal per 100 g scaled to 354 g",
+  "verified": true,
+  "aliases": [
+   "lite beer",
+   "light beers",
+   "bud light",
+   "miller lite"
+  ]
+ },
+ {
+  "id": "whiskey",
+  "name": "Whiskey (1.5 fl oz)",
+  "kcal": 97,
+  "portion": "1 jigger, 1.5 fl oz (42 g), 80 proof",
+  "group": "drinks",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 174815 (Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof), SR Legacy; 231 kcal per 100 g scaled to 42 g",
+  "verified": true,
+  "aliases": [
+   "whisky",
+   "bourbon",
+   "scotch",
+   "rye",
+   "shot of whiskey"
+  ]
+ },
+ {
+  "id": "vodka",
+  "name": "Vodka (1.5 fl oz)",
+  "kcal": 97,
+  "portion": "1 jigger, 1.5 fl oz (42 g), 80 proof",
+  "group": "drinks",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 174818 (Alcoholic beverage, distilled, vodka, 80 proof), SR Legacy; 231 kcal per 100 g scaled to 42 g",
+  "verified": true,
+  "aliases": [
+   "shot of vodka",
+   "vodka soda"
+  ]
+ },
+ {
+  "id": "wine",
+  "name": "Wine (5 fl oz)",
+  "kcal": 123,
+  "portion": "1 glass, 5 fl oz (148 g), table wine",
+  "group": "drinks",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 173185 (Alcoholic beverage, wine, table, all), SR Legacy; 83 kcal per 100 g scaled to 148 g",
+  "verified": true,
+  "aliases": [
+   "red wine",
+   "white wine",
+   "glass of wine",
+   "vino",
+   "red",
+   "rose"
+  ]
+ },
+ {
+  "id": "coke",
+  "name": "Coke (12 fl oz can)",
+  "kcal": 155,
+  "portion": "1 can, 12 fl oz (370 g), regular cola",
+  "group": "drinks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 174852 (Beverages, carbonated, cola, regular), SR Legacy; 42 kcal per 100 g scaled to 370 g",
+  "verified": true,
+  "aliases": [
+   "coca-cola",
+   "coca cola",
+   "cola",
+   "soda",
+   "pop"
+  ]
+ },
+ {
+  "id": "scallops",
+  "name": "Scallops (6 oz)",
+  "kcal": 189,
+  "portion": "6 oz cooked, steamed (170 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 167742 (Mollusks, scallop, (bay and sea), cooked, steamed), SR Legacy; 111 kcal per 100 g scaled to 170 g",
+  "verified": true,
+  "aliases": [
+   "scallop"
+  ]
+ },
+ {
+  "id": "shrimp",
+  "name": "Shrimp (6 oz)",
+  "kcal": 168,
+  "portion": "6 oz cooked (170 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 175180 (Crustaceans, shrimp, cooked), SR Legacy; 99 kcal per 100 g scaled to 170 g",
+  "verified": true,
+  "aliases": [
+   "shrimps",
+   "prawns"
+  ]
+ },
+ {
+  "id": "lobster-roll",
+  "name": "Lobster roll (1)",
+  "kcal": 374,
+  "portion": "1 roll: 3/4 cup lobster salad (136 g) on a hot dog bun (45 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central composite, Survey (FNDDS 2021-2023): FDC ID 2706825 (Lobster salad) 187 kcal/100 g x 136 g + FDC ID 2707656 (Roll, white, hot dog bun) 267 kcal/100 g x 45 g",
+  "verified": true,
+  "aliases": [
+   "lobster",
+   "lobstah roll",
+   "lobster rolls"
+  ]
+ },
+ {
+  "id": "fig-bars",
+  "name": "Fig bars (2)",
+  "kcal": 111,
+  "portion": "2 bars, Fig Newton size (32 g)",
+  "group": "sweets",
+  "treat": true,
+  "source": "USDA FoodData Central, FDC ID 172721 (Cookies, fig bars), SR Legacy; 348 kcal per 100 g scaled to 32 g",
+  "verified": true,
+  "aliases": [
+   "fig bar",
+   "fig newtons",
+   "fig newton",
+   "figs bars"
+  ]
+ },
+ {
+  "id": "granola-bar",
+  "name": "Granola bar (1)",
+  "kcal": 203,
+  "portion": "1 bar (43 g)",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2708101 (Cereal or Granola bar, NFS), Survey (FNDDS 2021-2023); 471 kcal per 100 g scaled to 43 g",
+  "verified": true,
+  "aliases": [
+   "granola bars",
+   "cereal bar"
+  ]
+ },
+ {
+  "id": "protein-bar",
+  "name": "Protein bar (1)",
+  "kcal": 131,
+  "portion": "1 bar (34 g, USDA default size; a 60 g bar is roughly double)",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2708127 (Nutrition bar or meal replacement bar, NFS), Survey (FNDDS 2021-2023); 386 kcal per 100 g scaled to 34 g",
+  "verified": true,
+  "aliases": [
+   "protein bars",
+   "quest bar",
+   "clif bar"
+  ]
+ },
+ {
+  "id": "pickle",
+  "name": "Pickle (1 spear)",
+  "kcal": 4,
+  "portion": "1 dill spear (35 g)",
+  "group": "veg",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 168558 (Pickles, cucumber, dill or kosher dill), SR Legacy; 12 kcal per 100 g scaled to 35 g",
+  "verified": true,
+  "aliases": [
+   "pickles",
+   "dill pickle",
+   "pickle spear"
+  ]
+ },
+ {
+  "id": "tofu",
+  "name": "Tofu (1/2 cup)",
+  "kcal": 98,
+  "portion": "1/2 cup firm tofu (126 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 172448 (Tofu, firm, prepared with calcium sulfate and magnesium chloride (nigari)), SR Legacy; 78 kcal per 100 g scaled to 126 g",
+  "verified": true,
+  "aliases": []
+ },
+ {
+  "id": "chicken-kabob",
+  "name": "Chicken kabob (1 skewer)",
+  "kcal": 210,
+  "portion": "1 skewer with vegetables (202 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2706783 (Chicken or turkey shish kabob with vegetables, excluding potatoes), Survey (FNDDS 2021-2023); 104 kcal per 100 g scaled to 202 g",
+  "verified": true,
+  "aliases": [
+   "kabob",
+   "kebab",
+   "chicken kebab",
+   "chicken skewer",
+   "shish kabob"
+  ]
+ },
+ {
+  "id": "turkey-sandwich",
+  "name": "Turkey sandwich (1)",
+  "kcal": 215,
+  "portion": "1 regular sandwich on wheat (115 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2706983 (Turkey sandwich on wheat), Survey (FNDDS 2021-2023); 187 kcal per 100 g scaled to 115 g",
+  "verified": true,
+  "aliases": [
+   "sando",
+   "turkey sando",
+   "turkey sandwhich"
+  ]
+ },
+ {
+  "id": "club-sandwich",
+  "name": "Club sandwich (1)",
+  "kcal": 374,
+  "portion": "1 club sandwich on white with cheese (155 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2706994 (Club sandwich on white, with cheese), Survey (FNDDS 2021-2023); 241 kcal per 100 g scaled to 155 g",
+  "verified": true,
+  "aliases": [
+   "club",
+   "club sando",
+   "turkey club"
+  ]
+ },
+ {
+  "id": "blt",
+  "name": "BLT (1)",
+  "kcal": 243,
+  "portion": "1 bacon, lettuce and tomato sandwich on white (105 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2706979 (Bacon, lettuce, tomato sandwich on white), Survey (FNDDS 2021-2023); 231 kcal per 100 g scaled to 105 g",
+  "verified": true,
+  "aliases": [
+   "blt sandwich",
+   "bacon lettuce tomato"
+  ]
+ },
+ {
+  "id": "pastrami-sandwich",
+  "name": "Pastrami sandwich (1)",
+  "kcal": 341,
+  "portion": "1 sandwich: 4 oz pastrami (113 g) on 2 slices rye (64 g) with 1 tbsp mustard",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central composite, SR Legacy: FDC ID 172684 (Bread, rye) 259 kcal/100 g x 64 g + FDC ID 170204 (Beef, cured, pastrami) 147 kcal/100 g x 113 g + FDC ID 172234 (Mustard, prepared, yellow) 60 kcal/100 g x 15 g",
+  "verified": true,
+  "aliases": [
+   "pastrami sando",
+   "pastrami on rye",
+   "reuben"
+  ]
+ },
+ {
+  "id": "white-rice",
+  "name": "White rice (1 cup cooked)",
+  "kcal": 205,
+  "portion": "1 cup cooked long-grain (158 g)",
+  "group": "grains",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 168878 (Rice, white, long-grain, regular, enriched, cooked), SR Legacy; 130 kcal per 100 g scaled to 158 g",
+  "verified": true,
+  "aliases": [
+   "rice"
+  ]
+ },
+ {
+  "id": "naan",
+  "name": "Naan (1 piece)",
+  "kcal": 262,
+  "portion": "1 piece (90 g)",
+  "group": "grains",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 171845 (Bread, naan, plain, commercially prepared, refrigerated), SR Legacy; 291 kcal per 100 g scaled to 90 g",
+  "verified": true,
+  "aliases": [
+   "nan",
+   "naan bread"
+  ]
+ },
+ {
+  "id": "waffle",
+  "name": "Waffle (1)",
+  "kcal": 280,
+  "portion": "1 medium waffle (75 g), plain",
+  "group": "grains",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2708325 (Waffle, plain), Survey (FNDDS 2021-2023); 373 kcal per 100 g scaled to 75 g",
+  "verified": true,
+  "aliases": [
+   "waffles"
+  ]
+ },
+ {
+  "id": "pork-chop",
+  "name": "Pork chop (6 oz cooked)",
+  "kcal": 355,
+  "portion": "6 oz cooked, center loin, bone removed (170 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 167827 (Pork, fresh, loin, center loin (chops), bone-in, separable lean and fat, cooked, broiled), SR Legacy; 209 kcal per 100 g scaled to 170 g",
+  "verified": true,
+  "aliases": [
+   "porkchop",
+   "pork chops",
+   "pork"
+  ]
+ },
+ {
+  "id": "chicken-wings",
+  "name": "Chicken wings (6)",
+  "kcal": 571,
+  "portion": "6 restaurant wings with hot sauce (210 g)",
+  "group": "protein",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2706070 (Chicken \"wings\" with hot sauce, from fast food / restaurant), Survey (FNDDS 2021-2023); 272 kcal per 100 g scaled to 210 g",
+  "verified": true,
+  "aliases": [
+   "wings",
+   "buffalo wings",
+   "hot wings"
+  ]
+ },
+ {
+  "id": "hot-dog",
+  "name": "Hot dog (1)",
+  "kcal": 302,
+  "portion": "1 beef hot dog on a white bun (102 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2707060 (Hot dog sandwich, beef, on white bun), Survey (FNDDS 2021-2023); 296 kcal per 100 g scaled to 102 g",
+  "verified": true,
+  "aliases": [
+   "hotdog",
+   "hot dogs",
+   "hotdogs",
+   "frank"
+  ]
+ },
+ {
+  "id": "burrito",
+  "name": "Burrito (1)",
+  "kcal": 434,
+  "portion": "1 fast-food burrito with beans, cheese and beef (241 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 173278 (Fast foods, burrito, with beans, cheese, and beef), SR Legacy; 180 kcal per 100 g scaled to 241 g",
+  "verified": true,
+  "aliases": [
+   "burritos"
+  ]
+ },
+ {
+  "id": "sushi",
+  "name": "Sushi (8 pieces)",
+  "kcal": 226,
+  "portion": "8 roll pieces (240 g)",
+  "group": "meals",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 2708959 (Sushi, NFS), Survey (FNDDS 2021-2023); 94 kcal per 100 g scaled to 240 g",
+  "verified": true,
+  "aliases": [
+   "sushi roll",
+   "maki"
+  ]
+ },
+ {
+  "id": "oatmeal",
+  "name": "Oatmeal (1 cup cooked)",
+  "kcal": 166,
+  "portion": "1 cup cooked with water (234 g)",
+  "group": "grains",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 173905 (Cereals, oats, regular and quick, unenriched, cooked with water (includes boiling and microwaving), without salt), SR Legacy; 71 kcal per 100 g scaled to 234 g",
+  "verified": true,
+  "aliases": [
+   "oats",
+   "porridge"
+  ]
+ },
+ {
+  "id": "peanut-butter",
+  "name": "Peanut butter (2 tbsp)",
+  "kcal": 191,
+  "portion": "2 tbsp (32 g)",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 174266 (Peanut butter, smooth style, with salt (Includes foods for USDA's Food Distribution Program)), SR Legacy; 598 kcal per 100 g scaled to 32 g",
+  "verified": true,
+  "aliases": [
+   "pb",
+   "pbutter",
+   "peanutbutter"
+  ]
+ },
+ {
+  "id": "banana",
+  "name": "Banana (1)",
+  "kcal": 105,
+  "portion": "1 medium, 7-8 inch (118 g)",
+  "group": "fruit",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 173944 (Bananas, raw), SR Legacy; 89 kcal per 100 g scaled to 118 g",
+  "verified": true,
+  "aliases": [
+   "bananas",
+   "nana"
+  ]
+ },
+ {
+  "id": "olive-oil",
+  "name": "Olive oil (1 tbsp)",
+  "kcal": 119,
+  "portion": "1 tbsp (13.5 g)",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 171413 (Oil, olive, salad or cooking), SR Legacy; 884 kcal per 100 g scaled to 13.5 g",
+  "verified": true,
+  "aliases": [
+   "oil",
+   "evoo"
+  ]
+ },
+ {
+  "id": "butter",
+  "name": "Butter (1 tbsp)",
+  "kcal": 102,
+  "portion": "1 tbsp (14 g)",
+  "group": "dairy",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 173410 (Butter, salted), SR Legacy; 717 kcal per 100 g scaled to 14.2 g",
+  "verified": true,
+  "aliases": [
+   "pat of butter"
+  ]
+ },
+ {
+  "id": "ranch",
+  "name": "Ranch dressing (2 tbsp)",
+  "kcal": 129,
+  "portion": "2 tbsp (30 g), regular",
+  "group": "snacks",
+  "treat": false,
+  "source": "USDA FoodData Central, FDC ID 173592 (Salad dressing, ranch dressing, regular), SR Legacy; 430 kcal per 100 g scaled to 30 g",
+  "verified": true,
+  "aliases": [
+   "ranch dressing",
+   "dressing"
+  ]
+ }
+]

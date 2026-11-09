@@ -1,0 +1,59 @@
+{
+  "version": "v1 (PROGRAM.md 2026-08-25, reverse fly swap 2026-09-05)",
+  "rules": [
+    "First set of every free-weight lift is a warm-up at half weight. Every session.",
+    "Leave 2–3 reps in the tank on every work set. If rep 8 gets ugly, rack it — that set still counts.",
+    "Add 5 lb only after two consecutive sessions with every rep clean.",
+    "Sharp pain = stop, swap back to the machine version, tell Lexi.",
+    "New free-weight moves: rehearse at home on video with light dumbbells before their gym debut."
+  ],
+  "cards": {
+    "A": {
+      "title": "Gym A",
+      "subtitle": "Squat + push + the missing row",
+      "day": "Tue",
+      "exercises": [
+        {"key": "goblet-squat", "name": "Goblet squat", "kind": "free", "sets": 3, "reps": "10", "unit": "lb", "startHint": "start 30", "cue": "Heels planted · elbows brush inside of knees at the bottom · chest up · stand tall between reps"},
+        {"key": "db-bench", "name": "DB bench press", "kind": "free", "sets": 3, "reps": "10", "unit": "lb/hand", "startHint": "start 25–30/hand", "cue": "Shoulder blades pinched under you · feet flat · wrists stacked over elbows · to mid-chest"},
+        {"key": "db-row", "name": "One-arm DB row", "kind": "free", "sets": 3, "reps": "10 each side", "unit": "lb", "startHint": "start 35", "cue": "Hand and knee on bench · back flat as a table · pull to the hip, not the armpit · no twist"},
+        {"key": "pec-fly", "name": "Pec fly (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "last on record 168 (Aug)", "cue": "Keep climbing"},
+        {"key": "tricep-press", "name": "Tricep press (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "last on record 170 (Aug)", "cue": "Keep climbing"},
+        {"key": "ab-crunch", "name": "Ab crunch (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "last on record 140 (Aug)", "cue": "Keep climbing"},
+        {"key": "rotary-torso", "name": "Rotary torso (machine)", "kind": "machine", "sets": 3, "reps": "10 each", "unit": "lb", "startHint": "last on record 100 (Aug)", "cue": "Keep climbing"},
+        {"key": "farmer-carry", "name": "Farmer carry", "kind": "carry", "sets": 3, "reps": "40 yd", "unit": "lb/hand", "startHint": "start 45–50/hand", "cue": "Stand TALL · shoulders back and down · no leaning"},
+        {"key": "plank", "name": "Plank", "kind": "timed", "sets": 3, "reps": "30 sec", "unit": "sec", "startHint": "bodyweight", "cue": "Straight line ear to ankle · squeeze glutes · no sagging hips"}
+      ]
+    },
+    "B": {
+      "title": "Gym B",
+      "subtitle": "Hinge + shoulders + the strong stuff",
+      "day": "Fri",
+      "exercises": [
+        {"key": "db-rdl", "name": "DB Romanian deadlift", "kind": "free", "sets": 3, "reps": "10", "unit": "lb/hand", "startHint": "re-entry 25/hand → working 30 after two clean", "cue": "Soft knees set once · hips push BACK · shins vertical · flat back · stop at the hamstring stretch · lower on a SLOW 3-count"},
+        {"key": "db-shoulder-press", "name": "Seated DB shoulder press", "kind": "free", "sets": 3, "reps": "8–10", "unit": "lb/hand", "startHint": "start 20/hand", "cue": "Back-support bench · forearms vertical · ribs down, no arching · press to lockout without shrugging"},
+        {"key": "lat-pulldown", "name": "Lat pulldown (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "re-entry 145 (9/25)", "cue": "Your best lift — keep climbing"},
+        {"key": "leg-press", "name": "Leg press (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "re-entry 190 (9/25)", "cue": "The march past 200 continues"},
+        {"key": "leg-curl", "name": "Seated leg curl (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "re-entry 85 (9/25)", "cue": "Keep climbing"},
+        {"key": "hip-abductor", "name": "Hip abductor (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "re-entry 110 (9/25)", "cue": "Keep climbing"},
+        {"key": "hip-adductor", "name": "Hip adductor (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "re-entry 110 (9/25)", "cue": "Keep climbing"},
+        {"key": "leg-extension", "name": "Leg extension (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "re-entry 110 (9/25)", "cue": "Keep climbing"},
+        {"key": "reverse-fly", "name": "Bent-over DB reverse fly", "kind": "free", "sets": 3, "reps": "12–15", "unit": "lb/hand", "startHint": "start 10–15/hand", "cue": "Hinge like the RDL · arms hang · raise to the sides with soft elbows · squeeze the shoulder blades · no swing"},
+        {"key": "dead-bug", "name": "Dead bug", "kind": "timed", "sets": 3, "reps": "10 each side", "unit": "reps", "startHint": "bodyweight", "cue": "Low back PRESSED to the floor · opposite arm and leg · slow"}
+      ]
+    }
+  },
+  "bookends": {
+    "warmup": "Warm-up: 5 min easy cardio + half-weight set of each lift",
+    "cooldown": "The Cooldown Five: hamstring · hip-flexor · doorway chest · figure-4 glute · calf — 30 sec a side"
+  },
+  "cardio": {
+    "rower-intervals": {"name": "Rower intervals", "fields": ["minutes", "hardPieces", "avgWatts"], "hint": "5 min easy, 6 × (2 hard / 1 easy), 5 easy. Record the average watts of the hard pieces."},
+    "rower-steady": {"name": "Rower steady", "fields": ["minutes", "avgWatts", "split"], "hint": "20–30 min conversational pace."},
+    "incline-walk": {"name": "Loaded incline walk", "fields": ["minutes", "packLb", "incline"], "hint": "Treadmill, pack 15–20 lb, 30–40 min."},
+    "walk": {"name": "Walk", "fields": ["minutes", "miles"], "hint": ""},
+    "hike": {"name": "Hike", "fields": ["minutes", "miles", "elevationFt"], "hint": "Elevation if you have it."},
+    "swim": {"name": "Swim", "fields": ["minutes", "yards"], "hint": ""},
+    "kayak": {"name": "Kayak", "fields": ["minutes", "miles"], "hint": ""},
+    "other": {"name": "Other", "fields": ["minutes"], "hint": "Yard work, painting, pilates — it all counts."}
+  }
+}

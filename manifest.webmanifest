@@ -1,0 +1,2 @@
+{"name":"Lexi's Studio","short_name":"Lexi's Studio","description":"Weight, waist, steps, meals, treats and gym sessions — private, offline, a little bit sparkly.","start_url":"./","scope":"./","display":"standalone","orientation":"portrait","background_color":"#fff4f8","theme_color":"#ff4f9a",
+ "icons":[{"src":"icons/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"},{"src":"icons/icon.svg","sizes":"any","type":"image/svg+xml"}]}
