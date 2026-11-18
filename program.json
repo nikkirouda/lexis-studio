@@ -13,15 +13,96 @@
       "subtitle": "Squat + push + the missing row",
       "day": "Tue",
       "exercises": [
-        {"key": "goblet-squat", "name": "Goblet squat", "kind": "free", "sets": 3, "reps": "10", "unit": "lb", "startHint": "start 30", "cue": "Heels planted · elbows brush inside of knees at the bottom · chest up · stand tall between reps"},
-        {"key": "db-bench", "name": "DB bench press", "kind": "free", "sets": 3, "reps": "10", "unit": "lb/hand", "startHint": "start 25–30/hand", "cue": "Shoulder blades pinched under you · feet flat · wrists stacked over elbows · to mid-chest"},
-        {"key": "db-row", "name": "One-arm DB row", "kind": "free", "sets": 3, "reps": "10 each side", "unit": "lb", "startHint": "start 35", "cue": "Hand and knee on bench · back flat as a table · pull to the hip, not the armpit · no twist"},
-        {"key": "pec-fly", "name": "Pec fly (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "last on record 168 (Aug)", "cue": "Keep climbing"},
-        {"key": "tricep-press", "name": "Tricep press (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "last on record 170 (Aug)", "cue": "Keep climbing"},
-        {"key": "ab-crunch", "name": "Ab crunch (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "last on record 140 (Aug)", "cue": "Keep climbing"},
-        {"key": "rotary-torso", "name": "Rotary torso (machine)", "kind": "machine", "sets": 3, "reps": "10 each", "unit": "lb", "startHint": "last on record 100 (Aug)", "cue": "Keep climbing"},
-        {"key": "farmer-carry", "name": "Farmer carry", "kind": "carry", "sets": 3, "reps": "40 yd", "unit": "lb/hand", "startHint": "start 45–50/hand", "cue": "Stand TALL · shoulders back and down · no leaning"},
-        {"key": "plank", "name": "Plank", "kind": "timed", "sets": 3, "reps": "30 sec", "unit": "sec", "startHint": "bodyweight", "cue": "Straight line ear to ankle · squeeze glutes · no sagging hips"}
+        {
+          "key": "goblet-squat",
+          "name": "Goblet squat",
+          "kind": "free",
+          "sets": 3,
+          "reps": "10",
+          "unit": "lb",
+          "startHint": "start 30",
+          "cue": "Heels planted · elbows brush inside of knees at the bottom · chest up · stand tall between reps"
+        },
+        {
+          "key": "db-bench",
+          "name": "DB bench press",
+          "kind": "free",
+          "sets": 3,
+          "reps": "10",
+          "unit": "lb/hand",
+          "startHint": "start 25–30/hand",
+          "cue": "Shoulder blades pinched under you · feet flat · wrists stacked over elbows · to mid-chest"
+        },
+        {
+          "key": "db-row",
+          "name": "One-arm DB row",
+          "kind": "free",
+          "sets": 3,
+          "reps": "10 each side",
+          "unit": "lb",
+          "startHint": "start 35",
+          "cue": "Hand and knee on bench · back flat as a table · pull to the hip, not the armpit · no twist"
+        },
+        {
+          "key": "pec-fly",
+          "name": "Pec fly (machine)",
+          "kind": "machine",
+          "sets": 3,
+          "reps": "10",
+          "unit": "lb",
+          "startHint": "last on record 168 (Aug)",
+          "cue": "Keep climbing"
+        },
+        {
+          "key": "tricep-press",
+          "name": "Tricep press (machine)",
+          "kind": "machine",
+          "sets": 3,
+          "reps": "10",
+          "unit": "lb",
+          "startHint": "last on record 170 (Aug)",
+          "cue": "Keep climbing"
+        },
+        {
+          "key": "ab-crunch",
+          "name": "Ab crunch (machine)",
+          "kind": "machine",
+          "sets": 3,
+          "reps": "10",
+          "unit": "lb",
+          "startHint": "last on record 140 (Aug)",
+          "cue": "Keep climbing"
+        },
+        {
+          "key": "rotary-torso",
+          "name": "Rotary torso (machine)",
+          "kind": "machine",
+          "sets": 3,
+          "reps": "10 each",
+          "unit": "lb",
+          "startHint": "last on record 100 (Aug)",
+          "cue": "Keep climbing"
+        },
+        {
+          "key": "farmer-carry",
+          "name": "Farmer carry",
+          "kind": "carry",
+          "sets": 3,
+          "reps": "40 yd",
+          "unit": "lb/hand",
+          "startHint": "start 45–50/hand",
+          "cue": "Stand TALL · shoulders back and down · no leaning"
+        },
+        {
+          "key": "plank",
+          "name": "Plank",
+          "kind": "timed",
+          "sets": 3,
+          "reps": "30 sec",
+          "unit": "sec",
+          "startHint": "bodyweight",
+          "cue": "Straight line ear to ankle · squeeze glutes · no sagging hips"
+        }
       ]
     },
     "B": {
@@ -29,16 +110,106 @@
       "subtitle": "Hinge + shoulders + the strong stuff",
       "day": "Fri",
       "exercises": [
-        {"key": "db-rdl", "name": "DB Romanian deadlift", "kind": "free", "sets": 3, "reps": "10", "unit": "lb/hand", "startHint": "re-entry 25/hand → working 30 after two clean", "cue": "Soft knees set once · hips push BACK · shins vertical · flat back · stop at the hamstring stretch · lower on a SLOW 3-count"},
-        {"key": "db-shoulder-press", "name": "Seated DB shoulder press", "kind": "free", "sets": 3, "reps": "8–10", "unit": "lb/hand", "startHint": "start 20/hand", "cue": "Back-support bench · forearms vertical · ribs down, no arching · press to lockout without shrugging"},
-        {"key": "lat-pulldown", "name": "Lat pulldown (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "re-entry 145 (9/25)", "cue": "Your best lift — keep climbing"},
-        {"key": "leg-press", "name": "Leg press (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "re-entry 190 (9/25)", "cue": "The march past 200 continues"},
-        {"key": "leg-curl", "name": "Seated leg curl (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "re-entry 85 (9/25)", "cue": "Keep climbing"},
-        {"key": "hip-abductor", "name": "Hip abductor (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "re-entry 110 (9/25)", "cue": "Keep climbing"},
-        {"key": "hip-adductor", "name": "Hip adductor (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "re-entry 110 (9/25)", "cue": "Keep climbing"},
-        {"key": "leg-extension", "name": "Leg extension (machine)", "kind": "machine", "sets": 3, "reps": "10", "unit": "lb", "startHint": "re-entry 110 (9/25)", "cue": "Keep climbing"},
-        {"key": "reverse-fly", "name": "Bent-over DB reverse fly", "kind": "free", "sets": 3, "reps": "12–15", "unit": "lb/hand", "startHint": "start 10–15/hand", "cue": "Hinge like the RDL · arms hang · raise to the sides with soft elbows · squeeze the shoulder blades · no swing"},
-        {"key": "dead-bug", "name": "Dead bug", "kind": "timed", "sets": 3, "reps": "10 each side", "unit": "reps", "startHint": "bodyweight", "cue": "Low back PRESSED to the floor · opposite arm and leg · slow"}
+        {
+          "key": "db-rdl",
+          "name": "DB Romanian deadlift",
+          "kind": "free",
+          "sets": 3,
+          "reps": "10",
+          "unit": "lb/hand",
+          "startHint": "re-entry 25/hand → working 30 after two clean",
+          "cue": "Soft knees set once · hips push BACK · shins vertical · flat back · stop at the hamstring stretch · lower on a SLOW 3-count"
+        },
+        {
+          "key": "db-shoulder-press",
+          "name": "Seated DB shoulder press",
+          "kind": "free",
+          "sets": 3,
+          "reps": "8–10",
+          "unit": "lb/hand",
+          "startHint": "start 20/hand",
+          "cue": "Back-support bench · forearms vertical · ribs down, no arching · press to lockout without shrugging"
+        },
+        {
+          "key": "lat-pulldown",
+          "name": "Lat pulldown (machine)",
+          "kind": "machine",
+          "sets": 3,
+          "reps": "10",
+          "unit": "lb",
+          "startHint": "re-entry 145 (9/25)",
+          "cue": "Your best lift — keep climbing"
+        },
+        {
+          "key": "leg-press",
+          "name": "Leg press (machine)",
+          "kind": "machine",
+          "sets": 3,
+          "reps": "10",
+          "unit": "lb",
+          "startHint": "re-entry 190 (9/25)",
+          "cue": "The march past 200 continues"
+        },
+        {
+          "key": "leg-curl",
+          "name": "Seated leg curl (machine)",
+          "kind": "machine",
+          "sets": 3,
+          "reps": "10",
+          "unit": "lb",
+          "startHint": "re-entry 85 (9/25)",
+          "cue": "Keep climbing"
+        },
+        {
+          "key": "hip-abductor",
+          "name": "Hip abductor (machine)",
+          "kind": "machine",
+          "sets": 3,
+          "reps": "10",
+          "unit": "lb",
+          "startHint": "re-entry 110 (9/25)",
+          "cue": "Keep climbing"
+        },
+        {
+          "key": "hip-adductor",
+          "name": "Hip adductor (machine)",
+          "kind": "machine",
+          "sets": 3,
+          "reps": "10",
+          "unit": "lb",
+          "startHint": "re-entry 110 (9/25)",
+          "cue": "Keep climbing"
+        },
+        {
+          "key": "leg-extension",
+          "name": "Leg extension (machine)",
+          "kind": "machine",
+          "sets": 3,
+          "reps": "10",
+          "unit": "lb",
+          "startHint": "re-entry 110 (9/25)",
+          "cue": "Keep climbing"
+        },
+        {
+          "key": "reverse-fly",
+          "name": "Bent-over DB reverse fly",
+          "kind": "free",
+          "sets": 3,
+          "reps": "12–15",
+          "unit": "lb/hand",
+          "startHint": "start 10–15/hand",
+          "cue": "Hinge like the RDL · arms hang · raise to the sides with soft elbows · squeeze the shoulder blades · no swing"
+        },
+        {
+          "key": "dead-bug",
+          "name": "Dead bug",
+          "kind": "timed",
+          "sets": 3,
+          "reps": "10 each side",
+          "unit": "reps",
+          "startHint": "bodyweight",
+          "cue": "Low back PRESSED to the floor · opposite arm and leg · slow"
+        }
       ]
     }
   },
@@ -47,13 +218,323 @@
     "cooldown": "The Cooldown Five: hamstring · hip-flexor · doorway chest · figure-4 glute · calf — 30 sec a side"
   },
   "cardio": {
-    "rower-intervals": {"name": "Rower intervals", "fields": ["minutes", "hardPieces", "avgWatts"], "hint": "5 min easy, 6 × (2 hard / 1 easy), 5 easy. Record the average watts of the hard pieces."},
-    "rower-steady": {"name": "Rower steady", "fields": ["minutes", "avgWatts", "split"], "hint": "20–30 min conversational pace."},
-    "incline-walk": {"name": "Loaded incline walk", "fields": ["minutes", "packLb", "incline"], "hint": "Treadmill, pack 15–20 lb, 30–40 min."},
-    "walk": {"name": "Walk", "fields": ["minutes", "miles"], "hint": ""},
-    "hike": {"name": "Hike", "fields": ["minutes", "miles", "elevationFt"], "hint": "Elevation if you have it."},
-    "swim": {"name": "Swim", "fields": ["minutes", "yards"], "hint": ""},
-    "kayak": {"name": "Kayak", "fields": ["minutes", "miles"], "hint": ""},
-    "other": {"name": "Other", "fields": ["minutes"], "hint": "Yard work, painting, pilates — it all counts."}
-  }
+    "rower-intervals": {
+      "name": "Rower intervals",
+      "fields": [
+        "minutes",
+        "hardPieces",
+        "avgWatts"
+      ],
+      "hint": "5 min easy, 6 × (2 hard / 1 easy), 5 easy. Record the average watts of the hard pieces."
+    },
+    "rower-steady": {
+      "name": "Rower steady",
+      "fields": [
+        "minutes",
+        "avgWatts",
+        "split"
+      ],
+      "hint": "20–30 min conversational pace."
+    },
+    "incline-walk": {
+      "name": "Loaded incline walk",
+      "fields": [
+        "minutes",
+        "packLb",
+        "incline"
+      ],
+      "hint": "Treadmill, pack 15–20 lb, 30–40 min."
+    },
+    "walk": {
+      "name": "Walk",
+      "fields": [
+        "minutes",
+        "miles"
+      ],
+      "hint": ""
+    },
+    "hike": {
+      "name": "Hike",
+      "fields": [
+        "minutes",
+        "miles",
+        "elevationFt"
+      ],
+      "hint": "Elevation if you have it."
+    },
+    "swim": {
+      "name": "Swim",
+      "fields": [
+        "minutes",
+        "yards"
+      ],
+      "hint": ""
+    },
+    "kayak": {
+      "name": "Kayak",
+      "fields": [
+        "minutes",
+        "miles"
+      ],
+      "hint": ""
+    },
+    "pilates": {
+      "name": "Pilates",
+      "fields": [
+        "minutes"
+      ],
+      "hint": "Class or at home."
+    },
+    "stretch": {
+      "name": "Stretch / mobility",
+      "fields": [
+        "minutes"
+      ],
+      "hint": "The Cooldown Five on a rest day counts."
+    },
+    "yard": {
+      "name": "Yard & house work",
+      "fields": [
+        "minutes"
+      ],
+      "hint": "Raking, digging, sanding, painting — it all moves you."
+    },
+    "other": {
+      "name": "Other",
+      "fields": [
+        "minutes"
+      ],
+      "hint": "Name it once — snowshoe, paddleboard, dance — and it's a chip next time."
+    }
+  },
+  "library": [
+    {
+      "key": "goblet-squat",
+      "name": "Goblet squat",
+      "unit": "lb",
+      "group": "Legs"
+    },
+    {
+      "key": "leg-press",
+      "name": "Leg press (machine)",
+      "unit": "lb",
+      "group": "Legs"
+    },
+    {
+      "key": "leg-extension",
+      "name": "Leg extension (machine)",
+      "unit": "lb",
+      "group": "Legs"
+    },
+    {
+      "key": "leg-curl",
+      "name": "Seated leg curl (machine)",
+      "unit": "lb",
+      "group": "Legs"
+    },
+    {
+      "key": "hip-abductor",
+      "name": "Hip abductor (machine)",
+      "unit": "lb",
+      "group": "Legs"
+    },
+    {
+      "key": "hip-adductor",
+      "name": "Hip adductor (machine)",
+      "unit": "lb",
+      "group": "Legs"
+    },
+    {
+      "key": "db-rdl",
+      "name": "DB Romanian deadlift",
+      "unit": "lb/hand",
+      "group": "Legs"
+    },
+    {
+      "key": "split-squat",
+      "name": "Split squat",
+      "unit": "lb/hand",
+      "group": "Legs"
+    },
+    {
+      "key": "step-up",
+      "name": "Step-up",
+      "unit": "lb/hand",
+      "group": "Legs"
+    },
+    {
+      "key": "walking-lunge",
+      "name": "Walking lunge",
+      "unit": "lb/hand",
+      "group": "Legs"
+    },
+    {
+      "key": "glute-bridge",
+      "name": "Glute bridge",
+      "unit": "bodyweight",
+      "group": "Legs"
+    },
+    {
+      "key": "calf-raise",
+      "name": "Calf raise",
+      "unit": "lb",
+      "group": "Legs"
+    },
+    {
+      "key": "db-bench",
+      "name": "DB bench press",
+      "unit": "lb/hand",
+      "group": "Push"
+    },
+    {
+      "key": "incline-db-press",
+      "name": "Incline DB press",
+      "unit": "lb/hand",
+      "group": "Push"
+    },
+    {
+      "key": "chest-press",
+      "name": "Chest press (machine)",
+      "unit": "lb",
+      "group": "Push"
+    },
+    {
+      "key": "pec-fly",
+      "name": "Pec fly (machine)",
+      "unit": "lb",
+      "group": "Push"
+    },
+    {
+      "key": "db-shoulder-press",
+      "name": "Seated DB shoulder press",
+      "unit": "lb/hand",
+      "group": "Push"
+    },
+    {
+      "key": "shoulder-press-machine",
+      "name": "Shoulder press (machine)",
+      "unit": "lb",
+      "group": "Push"
+    },
+    {
+      "key": "lateral-raise",
+      "name": "DB lateral raise",
+      "unit": "lb/hand",
+      "group": "Push"
+    },
+    {
+      "key": "tricep-press",
+      "name": "Tricep press (machine)",
+      "unit": "lb",
+      "group": "Push"
+    },
+    {
+      "key": "tricep-pushdown",
+      "name": "Cable tricep pushdown",
+      "unit": "lb",
+      "group": "Push"
+    },
+    {
+      "key": "push-up",
+      "name": "Push-up",
+      "unit": "bodyweight",
+      "group": "Push"
+    },
+    {
+      "key": "lat-pulldown",
+      "name": "Lat pulldown (machine)",
+      "unit": "lb",
+      "group": "Pull"
+    },
+    {
+      "key": "db-row",
+      "name": "One-arm DB row",
+      "unit": "lb",
+      "group": "Pull"
+    },
+    {
+      "key": "seated-row",
+      "name": "Seated row (machine/cable)",
+      "unit": "lb",
+      "group": "Pull"
+    },
+    {
+      "key": "assisted-pullup",
+      "name": "Assisted pull-up (machine)",
+      "unit": "lb",
+      "group": "Pull"
+    },
+    {
+      "key": "reverse-fly",
+      "name": "Bent-over DB reverse fly",
+      "unit": "lb/hand",
+      "group": "Pull"
+    },
+    {
+      "key": "band-pull-apart",
+      "name": "Band pull-apart",
+      "unit": "bodyweight",
+      "group": "Pull"
+    },
+    {
+      "key": "db-curl",
+      "name": "DB biceps curl",
+      "unit": "lb/hand",
+      "group": "Pull"
+    },
+    {
+      "key": "hammer-curl",
+      "name": "Hammer curl",
+      "unit": "lb/hand",
+      "group": "Pull"
+    },
+    {
+      "key": "ab-crunch",
+      "name": "Ab crunch (machine)",
+      "unit": "lb",
+      "group": "Core"
+    },
+    {
+      "key": "rotary-torso",
+      "name": "Rotary torso (machine)",
+      "unit": "lb",
+      "group": "Core"
+    },
+    {
+      "key": "plank",
+      "name": "Plank",
+      "unit": "sec",
+      "group": "Core"
+    },
+    {
+      "key": "side-plank",
+      "name": "Side plank",
+      "unit": "sec",
+      "group": "Core"
+    },
+    {
+      "key": "dead-bug",
+      "name": "Dead bug",
+      "unit": "bodyweight",
+      "group": "Core"
+    },
+    {
+      "key": "bird-dog",
+      "name": "Bird dog",
+      "unit": "bodyweight",
+      "group": "Core"
+    },
+    {
+      "key": "back-extension",
+      "name": "Back extension",
+      "unit": "bodyweight",
+      "group": "Core"
+    },
+    {
+      "key": "farmer-carry",
+      "name": "Farmer carry",
+      "unit": "lb/hand",
+      "group": "Carry"
+    }
+  ]
 }
