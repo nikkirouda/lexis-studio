@@ -220,3 +220,9 @@ details summary{cursor:pointer;font-weight:800;color:var(--pink-deep)}
 .rt-tools{display:flex;gap:4px}
 .rt-tools button{width:34px;height:34px;border-radius:10px;background:var(--pink-soft);color:var(--pink-deep);font-weight:900}
 .list .btn.sm{padding:6px 10px}
+
+.banner{border-radius:16px;padding:12px 14px;margin-bottom:14px;font-size:.9rem;line-height:1.4;border:2px solid}
+.banner.warn{background:#fff3cd;border-color:#f29b1d;color:#5a3d00}
+.banner.info{background:var(--pink-soft);border-color:var(--line);color:var(--ink)}
+.banner .btn{margin-top:8px;display:flex;width:fit-content}
+.banner .small{display:block;margin-top:4px;opacity:.85}

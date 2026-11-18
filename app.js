@@ -1,6 +1,6 @@
 /* Lexi's Studio — a private fitness tracker. No data in this file, ever. */
 'use strict';
-const APP_VERSION = '0.2.0';
+const APP_VERSION = '0.2.1';
 const LS_KEY = 'lexi.studio.v1';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -241,6 +241,7 @@ async function syncAll(manual) {
   } finally { syncing = false; }
 }
 function setSyncUI(mode) {
+  const sb = $('#syncBanner'); if (sb && $('#view-home').classList.contains('active') && mode !== 'syncing') { const h = syncBannerHtml(); if (sb.dataset.h !== h) { sb.dataset.h = h; sb.innerHTML = h; $$('[data-fix-sync]', sb).forEach(x => x.onclick = () => show('settings')); $$('[data-sync-now]', sb).forEach(x => x.onclick = () => syncAll(true)); } }
   const dot = $('#syncDot'), txt = $('#syncText'); const s = state.sync; const dirty = Object.keys(s.dirty).length || s.settingsDirty;
   if (!s.token) { dot.className = 'dot off'; txt.textContent = 'local only'; }
   else if (mode === 'syncing') { dot.className = 'dot'; txt.textContent = 'syncing…'; }
@@ -248,7 +249,7 @@ function setSyncUI(mode) {
   else if (dirty) { dot.className = 'dot'; txt.textContent = 'pending'; }
   else if (!navigator.onLine) { dot.className = 'dot off'; txt.textContent = 'offline · saved'; }
   else { dot.className = 'dot ok'; txt.textContent = s.lastSync ? 'synced ' + new Date(s.lastSync).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) : 'ready'; }
-  const det = $('#syncDetail'); if (det) det.textContent = s.lastError ? ('Last error: ' + s.lastError) : (s.lastSync ? 'Last sync ' + new Date(s.lastSync).toLocaleString() : '');
+  const det = $('#syncDetail'); if (det) det.textContent = s.lastError ? ('Problem: ' + syncErrorPlain(s.lastError)) : (s.lastSync ? 'Last sync ' + new Date(s.lastSync).toLocaleString() : '');
 }
 
 /* ---------- UI plumbing ---------- */
@@ -272,7 +273,29 @@ $('#celOk').addEventListener('click', () => { $('#celebrate').classList.remove('
 function checkBadges() { const f = facts(); const earned = earnedBadges(f).map(b => b.id); const fresh = earned.filter(id => !state.badgesSeen.includes(id)); if (fresh.length) { state.badgesSeen = Array.from(new Set([...state.badgesSeen, ...earned])); persist(); fresh.forEach(id => { const b = BADGES.find(x => x.id === id); celebrate(`Badge: ${b.name}`, b.desc, b.em); }); } }
 
 /* ---------- HOME ---------- */
+function syncErrorPlain(e) {
+  const m = String(e || ''); const code = (m.match(/: (\d{3})/) || [])[1];
+  if (code === '401') return 'GitHub refused the key: it is mistyped, expired or revoked. Make a new one and paste it in Settings.';
+  if (code === '403') return `The key can't write to ${state.sync.repo}: give it Contents read and write for that repository.`;
+  if (code === '404') return `The key can't see ${state.sync.repo}: check the repository name and the key's repository access.`;
+  if (code === '409' || code === '422') return 'GitHub turned the save down (' + code + '). Press Sync now once more; if it repeats, tell Jeeves this line.';
+  if (/Failed to fetch|NetworkError|Load failed/i.test(m)) return 'No connection to GitHub just now. It will try again when you are back online.';
+  return 'Details: ' + m.slice(0, 140);
+}
+function syncBannerHtml() {
+  const s = state.sync; const entries = allDays().some(([k, d]) => dayHasEntry(d, k)) || allWorkouts().length > 0;
+  if (!s.token) return entries
+    ? `<div class="banner warn"><b>⚠️ Not syncing.</b> Everything you log here lives only in this browser — your other devices can't see it, and clearing this browser would lose it. <button class="btn sm" data-fix-sync>Set up sync</button></div>`
+    : `<div class="banner info"><b>Sync isn't set up on this device.</b> Paste your key once and your phone and laptop share one record. <button class="btn sm ghost" data-fix-sync>Set up sync</button></div>`;
+  if (s.lastError) return `<div class="banner warn"><b>⚠️ Sync isn't working.</b> New entries are saved here but haven't reached your vault. <span class="small">${esc(syncErrorPlain(s.lastError))}</span> <button class="btn sm" data-fix-sync>Fix it in Settings</button></div>`;
+  if (syncing) return '';
+  const pending = Object.keys(s.dirty || {}).length || s.settingsDirty;
+  const ageH = s.lastSync ? (Date.now() - new Date(s.lastSync)) / 3600000 : Infinity;
+  if (pending && ageH > 24) return `<div class="banner warn"><b>⚠️ Waiting to sync.</b> This device has entries that haven't reached your vault${s.lastSync ? ' since ' + new Date(s.lastSync).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : ''}. <button class="btn sm" data-sync-now>Sync now</button></div>`;
+  return '';
+}
 function renderHome() {
+  $('#syncBanner').innerHTML = syncBannerHtml(); $$('#syncBanner [data-fix-sync]').forEach(x => x.onclick = () => { show('settings'); setTimeout(() => { const t = $('#setToken'); if (t) { t.scrollIntoView({ block: 'center' }); if (!state.sync.token) t.focus(); } }, 50); }); $$('#syncBanner [data-sync-now]').forEach(x => x.onclick = () => syncAll(true));
   const f = facts(); const line = lexiLine(f); const lc = $('#lexiCard'); lc.classList.toggle('plain', !!line.plain); $('#lexiLine').textContent = line.text; $('.lexi .avatar').textContent = line.plain ? '🩺' : '💪';
   const g = state.settings.goal; const t = f.t; const d = f.todayD || {};
   const last = f.ws.length ? f.ws[f.ws.length - 1] : null;
