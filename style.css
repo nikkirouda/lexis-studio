@@ -68,7 +68,7 @@ main{max-width:720px;margin:0 auto;padding:14px 16px 20px}
 .tile.neon{background:linear-gradient(135deg,#2ee6c5,#19c3a6);color:#073d35;border:0}
 .tile.neon .label,.tile.neon .big,.tile.neon .big small,.tile.neon .delta{color:#073d35}
 
-.quick{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
 .quick button{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.72rem;font-weight:700;color:var(--ink);box-shadow:var(--shadow)}
 .quick button span.ico{font-size:1.4rem}
 .quick button:active{transform:scale(.96)}
@@ -226,3 +226,14 @@ details summary{cursor:pointer;font-weight:800;color:var(--pink-deep)}
 .banner.info{background:var(--pink-soft);border-color:var(--line);color:var(--ink)}
 .banner .btn{margin-top:8px;display:flex;width:fit-content}
 .banner .small{display:block;margin-top:4px;opacity:.85}
+
+/* check-in and blood pressure (v0.3.0) */
+.scale{display:grid;grid-template-columns:repeat(11,1fr);gap:4px}
+.scale.two{grid-template-columns:repeat(2,1fr);gap:8px}
+.scale button{padding:10px 0;border-radius:10px;border:2px solid var(--line);background:var(--cream);font-weight:800;font-size:.9rem;color:var(--ink)}
+.scale button.on{background:var(--pink);border-color:var(--pink);color:#fff}
+#trendTabs{overflow-x:auto;scrollbar-width:none}
+#trendTabs::-webkit-scrollbar{display:none}
+#trendTabs button{flex:1 0 auto;padding:8px 12px;white-space:nowrap}
+.list .t[data-editcheck]{cursor:pointer}
+button.chip{cursor:pointer}

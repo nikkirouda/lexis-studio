@@ -1,6 +1,6 @@
 # Lexi's Studio
 
-A private, installable fitness tracker: weight and the 7-day average, waist tape, steps, plates with
+A private, installable fitness tracker: weight and the 7-day average, waist tape, steps, a daily check-in (sleep, mood, energy), blood pressure, plates with
 estimated calories, a weekly treat meter, the Gym A / Gym B card as a live checklist, rower and
 treadmill and adventure entries, trends, badges and levels — with Lexi's lines on the home screen.
 

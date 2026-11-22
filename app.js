@@ -1,6 +1,6 @@
 /* Lexi's Studio — a private fitness tracker. No data in this file, ever. */
 'use strict';
-const APP_VERSION = '0.2.1';
+const APP_VERSION = '0.3.0';
 const LS_KEY = 'lexi.studio.v1';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -29,8 +29,8 @@ function hashStr(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h
    name) are kept as written and always escaped when shown; every other string loses the characters
    that could turn into HTML (< > " ' & `) and is capped in length; numbers must be finite. A planted
    value therefore can never become markup or script on this page. */
-const FREE_TEXT = new Set(['text', 'note', 'name']);
-const NUMERIC = new Set(['setCount', 'weight', 'waist', 'steps', 'kcal', 'qty', 'minutes', 'wt', 'reps', 'miles', 'yards', 'avgWatts', 'hardPieces', 'packLb', 'incline', 'elevationFt', 'low', 'high', 'treatBudget', 'weekStart', 'prCount']);
+const FREE_TEXT = new Set(['text', 'note', 'name', 'couldnt', 'skipped', 'helped']);
+const NUMERIC = new Set(['setCount', 'weight', 'waist', 'steps', 'kcal', 'qty', 'minutes', 'wt', 'reps', 'miles', 'yards', 'avgWatts', 'hardPieces', 'packLb', 'incline', 'elevationFt', 'low', 'high', 'treatBudget', 'weekStart', 'prCount', 'sleepHrs', 'wakings', 'mood', 'stress', 'energy', 'focus', 'workPlanned', 'workDone', 'sys', 'dia', 'pulse']);
 const MONTH_RE = /^\d{4}-\d{2}$/, DAY_RE = /^\d{4}-\d{2}-\d{2}$/;
 function cleanValue(v, key, depth = 0) {
   if (depth > 8) return null;
@@ -45,7 +45,7 @@ function cleanValue(v, key, depth = 0) {
 function cleanMonth(m) {
   if (!m || typeof m !== 'object') return null;
   const out = { version: 1, days: {}, workouts: {}, updatedAt: typeof m.updatedAt === 'string' ? cleanValue(m.updatedAt, 'updatedAt') : '' };
-  Object.entries(m.days || {}).forEach(([k, d]) => { if (DAY_RE.test(k) && d && typeof d === 'object') { const c = cleanValue(d, 'day'); c.meals = Array.isArray(c.meals) ? c.meals.filter(x => x && typeof x === 'object') : []; c.activities = Array.isArray(c.activities) ? c.activities.filter(x => x && typeof x === 'object') : []; out.days[k] = c; } });
+  Object.entries(m.days || {}).forEach(([k, d]) => { if (DAY_RE.test(k) && d && typeof d === 'object') { const c = cleanValue(d, 'day'); c.meals = Array.isArray(c.meals) ? c.meals.filter(x => x && typeof x === 'object') : []; c.activities = Array.isArray(c.activities) ? c.activities.filter(x => x && typeof x === 'object') : []; c.bp = Array.isArray(c.bp) ? c.bp.filter(x => x && typeof x === 'object' && Number.isFinite(x.sys) && Number.isFinite(x.dia)) : []; c.check = (c.check && typeof c.check === 'object' && !Array.isArray(c.check)) ? c.check : null; out.days[k] = c; } });
   Object.entries(m.workouts || {}).forEach(([k, w]) => { const ck = String(k).replace(/[^\w.:-]/g, '').slice(0, 64); if (ck && w && typeof w === 'object') { const c = cleanValue(w, 'workout'); if (!DAY_RE.test(c.date || '')) return; c.exercises = Array.isArray(c.exercises) ? c.exercises : []; out.workouts[ck] = c; } });
   return out;
 }
@@ -89,7 +89,7 @@ function load() {
 function persist() { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) { toast('Could not save on this device: ' + e.message); } }
 
 function month(mk, create) { let m = state.months[mk]; if (!m && create) { m = state.months[mk] = { version: 1, days: {}, workouts: {}, updatedAt: nowISO() }; } return m; }
-function day(k, create) { const m = month(monthOf(k), create); if (!m) return null; let d = m.days[k]; if (!d && create) { d = m.days[k] = { weight: null, waist: null, steps: null, meals: [], activities: [], note: '', updatedAt: nowISO() }; } return d; }
+function day(k, create) { const m = month(monthOf(k), create); if (!m) return null; let d = m.days[k]; if (!d && create) { d = m.days[k] = { weight: null, waist: null, steps: null, meals: [], activities: [], bp: [], check: null, note: '', updatedAt: nowISO() }; } return d; }
 function touchDay(k) { const d = day(k, true); d.updatedAt = nowISO(); const m = month(monthOf(k)); m.updatedAt = d.updatedAt; state.sync.dirty[monthOf(k)] = true; persist(); scheduleSync(); }
 function touchMonth(mk) { const m = month(mk, true); m.updatedAt = nowISO(); state.sync.dirty[mk] = true; persist(); scheduleSync(); }
 function touchSettings() { state.settings.updatedAt = nowISO(); state.sync.settingsDirty = true; persist(); scheduleSync(); }
@@ -322,6 +322,8 @@ function dayList(k) {
   if (d && d.weight != null) items.push(`<li><span class="ico">⚖️</span><div class="t"><b>Weighed in</b><span>${k === todayKey() ? 'this morning' : fmtDate(k)}</span></div><span class="k">${d.weight} lb</span><button class="x" data-del="weight">×</button></li>`);
   if (d && d.waist != null) items.push(`<li><span class="ico">📏</span><div class="t"><b>Waist tape</b><span>at the navel</span></div><span class="k">${d.waist} in</span><button class="x" data-del="waist">×</button></li>`);
   if (d && d.steps != null) items.push(`<li><span class="ico">👟</span><div class="t"><b>Steps</b></div><span class="k">${d.steps.toLocaleString()}</span><button class="x" data-del="steps">×</button></li>`);
+  if (d && d.check) items.push(`<li><span class="ico">🌙</span><div class="t" data-editcheck="1"><b>Check-in</b><span>${esc(checkSummary(d.check))}</span></div><button class="x" data-del="check">×</button></li>`);
+  (d && d.bp ? d.bp : []).forEach(b => items.push(`<li><span class="ico">🩺</span><div class="t"><b>Blood pressure</b><span>${esc([b.t, b.ctx, b.pulse ? 'pulse ' + b.pulse : '', b.note].filter(Boolean).join(' · '))}</span></div><span class="k">${b.sys}/${b.dia}</span><button class="x" data-delb="${esc(b.id)}">×</button></li>`));
   ws.forEach(w => items.push(`<li><span class="ico">${workoutIcon(w)}</span><div class="t"><b>${esc(workoutTitle(w))}</b><span>${(w.exercises || []).filter(e => e.done).length} movements${w.prs && w.prs.length ? ' · ' + w.prs.length + ' PR' + (w.prs.length > 1 ? 's' : '') : ''}${w.minutes ? ' · ' + w.minutes + ' min' : ''}</span></div><span class="k">${esc(w.feel || '')}</span><button class="x" data-delw="${w.id}">×</button></li>`));
   (d ? d.activities : []).forEach(a => items.push(`<li><span class="ico">${actIcon(a.type)}</span><div class="t"><b>${esc(actLabel(a))}</b><span>${esc(actSummary(a))}</span></div><button class="x" data-dela="${a.id}">×</button></li>`));
   (d ? d.meals : []).forEach(m => items.push(`<li><span class="ico">${m.treat ? '🍺' : '🍽️'}</span><div class="t"><b>${esc(m.text)}${m.qty > 1 ? ' ×' + m.qty : ''}</b><span>${esc(m.t || '')}</span></div><span class="k">${m.kcal ? (m.verified === false ? '~' : '') + Math.round(m.kcal) + ' kcal' : ''}</span><button class="x" data-delm="${m.id}">×</button></li>`));
@@ -335,9 +337,11 @@ function bindDeletes(k) {
     if (x.dataset.del) d[x.dataset.del] = null;
     if (x.dataset.delm) d.meals = d.meals.filter(m => m.id !== x.dataset.delm);
     if (x.dataset.dela) d.activities = d.activities.filter(a => a.id !== x.dataset.dela);
+    if (x.dataset.delb) d.bp = (d.bp || []).filter(b => b.id !== x.dataset.delb);
     if (x.dataset.delw) { const m = month(monthOf(k)); delete m.workouts[x.dataset.delw]; touchMonth(monthOf(k)); }
     touchDay(k); render();
   });
+  $$(`ul.list[data-day="${k}"] [data-editcheck]`).forEach(x => x.onclick = () => sheetCheck(k));
 }
 const ACT_ICONS = { 'rower-intervals': '🚣', 'rower-steady': '🚣', 'incline-walk': '🎒', walk: '🚶', hike: '🥾', swim: '🏊', kayak: '🛶', pilates: '🧘', stretch: '🤸', yard: '🍂', other: '✨' };
 const actIcon = t => ACT_ICONS[t] || '✨';
@@ -354,6 +358,8 @@ function quick(what, k) {
   if (what === 'steps') return sheetSteps(k);
   if (what === 'meal') return sheetMeal(k);
   if (what === 'move') return sheetMove(k);
+  if (what === 'check') return sheetCheck(k);
+  if (what === 'bp') return sheetBP(k);
 }
 function sheetWeigh(k) {
   const d = day(k) || {}; const last = weightSeries().filter(p => p.k < k).pop(); const isFri = parseKey(k).getDay() === 5;
@@ -389,6 +395,88 @@ function sheetMove(k, type) {
     toast(`${actLabel(a)} banked${dk !== todayKey() ? ' for ' + fmtShort(dk) : ''} ✓`); checkBadges();
   };
 }
+/* ---------- check-in and blood pressure (v0.3.0) ----------
+   A plain daily record: no scores, no badges, no commentary. Stored on the day:
+   check = {sleepHrs, wakings, dreams, mood, stress, energy, focus, workPlanned, workDone, couldnt, skipped, helped, t}
+   bp = [{id, t, sys, dia, pulse, ctx, note}] */
+const SCALES = [['mood', 'Mood', '0 worst · 10 best'], ['stress', 'Stress or anxiety', '0 calm · 10 worst'], ['energy', 'Energy', '0 none · 10 full'], ['focus', 'Concentration', '0 none · 10 sharp']];
+const BP_CTX = ['at rest', 'during work', 'after exercise', 'after a walk', 'stressed', 'other'];
+const numIn = (v, lo, hi) => { const n = parseFloat(v); return Number.isFinite(n) && n >= lo && n <= hi ? n : null; };
+function checkSummary(c) {
+  const p = [];
+  if (c.sleepHrs != null) p.push('sleep ' + c.sleepHrs + 'h'); if (c.wakings != null) p.push(c.wakings + ' waking' + (c.wakings === 1 ? '' : 's')); if (c.dreams === true) p.push('bad dreams');
+  SCALES.forEach(([k, label]) => { if (c[k] != null) p.push(label.toLowerCase() + ' ' + c[k]); });
+  if (c.workDone != null || c.workPlanned != null) p.push('work ' + (c.workDone ?? '?') + ' of ' + (c.workPlanned ?? '?') + 'h');
+  if (c.couldnt || c.skipped || c.helped) p.push('notes');
+  return p.join(' · ') || 'saved';
+}
+function sheetCheck(k) {
+  const c = Object.assign({}, (day(k) || {}).check || {});
+  const num = (id, label, val, step) => `<div class="field"><label>${label}</label><input type="number" min="0" step="${step}" inputmode="decimal" id="${id}" value="${val ?? ''}"></div>`;
+  const scale = ([key, label, hint]) => `<div class="field"><label>${label} <span class="muted">${hint}</span></label><div class="scale" data-scale="${key}">${Array.from({ length: 11 }, (_, i) => `<button type="button" data-v="${i}" class="${c[key] === i ? 'on' : ''}">${i}</button>`).join('')}</div></div>`;
+  const area = (id, label, val, ph) => `<div class="field"><label>${label}</label><textarea id="${id}" rows="2" maxlength="2000" placeholder="${ph}">${esc(val || '')}</textarea></div>`;
+  openSheet(`<h2>Check-in · ${fmtDate(k)}</h2><p class="sub">Last night's sleep and how this day went. Skip anything. A good day gets logged the same as a bad one.</p>
+    <div class="fields">${num('ckSleep', 'Sleep (hours)', c.sleepHrs, '0.25')}${num('ckWake', 'Wakings', c.wakings, '1')}</div>
+    <div class="field"><label>Bad dreams</label><div class="scale two" data-scale="dreams"><button type="button" data-v="yes" class="${c.dreams === true ? 'on' : ''}">Yes</button><button type="button" data-v="no" class="${c.dreams === false ? 'on' : ''}">No</button></div></div>
+    ${SCALES.map(scale).join('')}
+    <div class="fields">${num('ckPlan', 'Work hours planned', c.workPlanned, '0.5')}${num('ckDone', 'Work hours done', c.workDone, '0.5')}</div>
+    ${area('ckCouldnt', 'Work: what got in the way?', c.couldnt, 'What you could not do or finish; anything cut short or handed off')}
+    ${area('ckSkipped', 'Rest of the day: anything skipped?', c.skipped, 'Meals, exercise, chores, people')}
+    ${area('ckHelped', 'What helped, or made it worse?', c.helped, 'Appointments count')}
+    <button class="btn block" id="shSave">Save</button>`);
+  $$('#sheetBody .scale button').forEach(b => b.onclick = () => {
+    const key = b.parentElement.dataset.scale, on = b.classList.contains('on');
+    $$('button', b.parentElement).forEach(x => x.classList.remove('on'));
+    if (key === 'dreams') c.dreams = on ? null : b.dataset.v === 'yes'; else c[key] = on ? null : Number(b.dataset.v);
+    if (!on) b.classList.add('on');
+  });
+  $('#shSave').onclick = () => {
+    const out = { sleepHrs: numIn($('#ckSleep').value, 0, 24), wakings: numIn($('#ckWake').value, 0, 50), dreams: typeof c.dreams === 'boolean' ? c.dreams : null,
+      workPlanned: numIn($('#ckPlan').value, 0, 24), workDone: numIn($('#ckDone').value, 0, 24),
+      couldnt: $('#ckCouldnt').value.trim(), skipped: $('#ckSkipped').value.trim(), helped: $('#ckHelped').value.trim() };
+    SCALES.forEach(([key]) => { out[key] = Number.isInteger(c[key]) && c[key] >= 0 && c[key] <= 10 ? c[key] : null; });
+    if (!Object.values(out).some(v => v != null && v !== '')) return toast('Nothing to save yet.');
+    out.t = c.t || timeNow(); const dd = day(k, true); dd.check = out; touchDay(k); closeSheet(); render(); toast('Check-in saved ✓');
+  };
+}
+function sheetBP(k) {
+  let ctx = '';
+  openSheet(`<h2>Blood pressure · ${fmtDate(k)}</h2><p class="sub">For a resting reading: seated, feet flat, a few quiet minutes first. Add each reading you take.</p>
+    <div class="fields"><div class="field"><label>Top</label><input class="big" type="number" inputmode="numeric" id="bpSys" placeholder="120"></div><div class="field"><label>Bottom</label><input class="big" type="number" inputmode="numeric" id="bpDia" placeholder="80"></div></div>
+    <div class="fields"><div class="field"><label>Pulse <span class="muted">optional</span></label><input type="number" inputmode="numeric" id="bpPulse"></div><div class="field"><label>Time</label><input type="time" id="bpTime" value="${k === todayKey() ? timeNow() : ''}"></div></div>
+    <div class="field"><label>When</label><div class="chips" id="bpCtx">${BP_CTX.map(x => `<button type="button" class="chip neutral" data-c="${x}">${x}</button>`).join('')}</div></div>
+    <div class="field"><label>Note <span class="muted">optional</span></label><input id="bpNote" maxlength="200"></div>
+    <button class="btn block" id="shSave">Save</button>`);
+  $$('#bpCtx .chip').forEach(b => b.onclick = () => { const on = b.classList.contains('on'); $$('#bpCtx .chip').forEach(x => x.classList.remove('on')); ctx = on ? '' : b.dataset.c; if (!on) b.classList.add('on'); });
+  $('#shSave').onclick = () => {
+    const sys = numIn($('#bpSys').value, 50, 300), dia = numIn($('#bpDia').value, 30, 200);
+    if (sys == null || dia == null) return toast('Both numbers, please.');
+    if (dia >= sys) return toast('Top number should be the larger one.');
+    const dd = day(k, true); if (!Array.isArray(dd.bp)) dd.bp = [];
+    const tm = $('#bpTime').value; dd.bp.push({ id: uid(), t: /^\d{2}:\d{2}$/.test(tm) ? tm : '', sys: Math.round(sys), dia: Math.round(dia), pulse: numIn($('#bpPulse').value, 20, 250), ctx, note: $('#bpNote').value.trim() });
+    dd.bp.sort((x, y) => (x.t || '').localeCompare(y.t || '')); touchDay(k); render();
+    if (sys > 180 || dia > 120) openSheet(`<h2>That is a very high reading</h2><p>Wait at least a minute and take it again.</p><p>If it is still above 180/120 and you feel all right, contact your doctor as soon as you can.</p><p><b>Call 911</b> if it comes with chest pain, shortness of breath, back pain, numbness or weakness, a change in vision, or trouble speaking. Do not wait to see whether it comes down.</p><p class="tiny muted">This follows the American Heart Association's public guidance. The app is not a doctor.</p>`);
+    else { closeSheet(); toast('Reading saved ✓'); }
+  };
+}
+function bpReadings() { const out = []; allDays().forEach(([k, d]) => (d.bp || []).forEach(b => out.push(Object.assign({ k }, b)))); return out; }
+function checkDays() { return allDays().filter(([k, d]) => d.check).map(([k, d]) => Object.assign({ k }, d.check)); }
+function summaryText(days) {
+  const k1 = todayKey(), k0 = addDays(k1, -(days - 1)), L = [`Check-ins and blood pressure, ${k0} to ${k1}`, ''];
+  for (let k = k0; k <= k1; k = addDays(k, 1)) {
+    const d = day(k); if (!d || (!d.check && !(d.bp || []).length)) continue; const c = d.check, p = [];
+    if (c) { if (c.sleepHrs != null) p.push(`sleep ${c.sleepHrs} h`); if (c.wakings != null) p.push(`wakings ${c.wakings}`); if (c.dreams != null) p.push(`bad dreams ${c.dreams ? 'yes' : 'no'}`); SCALES.forEach(([key, label]) => { if (c[key] != null) p.push(`${label.toLowerCase()} ${c[key]}/10`); }); if (c.workPlanned != null || c.workDone != null) p.push(`work ${c.workDone ?? '?'} of ${c.workPlanned ?? '?'} h`); }
+    L.push(`${k} (${parseKey(k).toLocaleDateString(undefined, { weekday: 'short' })}): ${p.join('; ') || '—'}`);
+    if (c && c.couldnt) L.push(`  Work: ${c.couldnt}`); if (c && c.skipped) L.push(`  Rest of the day: ${c.skipped}`); if (c && c.helped) L.push(`  Helped or made it worse: ${c.helped}`);
+    (d.bp || []).forEach(b => L.push(`  BP ${b.sys}/${b.dia}${b.pulse ? ', pulse ' + b.pulse : ''}${b.t ? ' at ' + b.t : ''}${b.ctx ? ' (' + b.ctx + ')' : ''}${b.note ? ' — ' + b.note : ''}`));
+  }
+  if (L.length === 2) L.push('No entries in this period.');
+  L.push('', 'Scales are my own 0–10 ratings: mood 10 = best, stress or anxiety 10 = worst, energy and concentration 10 = best.');
+  return L.join('\n');
+}
+function copySummaryText() { const txt = summaryText(trendRange || 365); const done = () => toast('Copied — paste it wherever you need it'); if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, () => showSummaryText(txt)); else showSummaryText(txt); }
+function showSummaryText(txt) { openSheet(`<h2>Summary</h2><p class="sub">Select all and copy.</p><div class="field"><textarea rows="14" readonly>${esc(txt)}</textarea></div>`); }
+
 /* meals */
 function foodCounts() { const c = {}; allDays().forEach(([k, d]) => (d.meals || []).forEach(m => { if (m.foodId) c[m.foodId] = (c[m.foodId] || 0) + 1; })); return c; }
 function findFood(id) { return FOODS.find(f => f.id === id); }
@@ -431,9 +519,11 @@ function renderLog() {
   $('#lgAddMeal').onclick = () => sheetMeal(k);
   $('#logMoves').innerHTML = `<div class="row spread"><h2>Moves</h2><div class="row"><button class="btn sm ghost" id="lgGym">Gym</button><button class="btn sm" id="lgAddMove">+ Add</button></div></div>` + dayListFiltered(k, 'moves');
   $('#lgAddMove').onclick = () => sheetMove(k); $('#lgGym').onclick = () => show('gym');
+  $('#logHealth').innerHTML = `<div class="row spread"><h2>Check-in &amp; blood pressure</h2><div class="row"><button class="btn sm ghost" id="lgCheck">${d.check ? 'Edit check-in' : 'Check-in'}</button><button class="btn sm" id="lgBP">+ BP</button></div></div>` + (dayListFiltered(k, 'health') || '<div class="empty">Nothing logged.</div>');
+  $('#lgCheck').onclick = () => sheetCheck(k); $('#lgBP').onclick = () => sheetBP(k);
   $('#dayNote').value = d.note || '';
 }
-function dayListFiltered(k, which) { const html = dayList(k); const tmp = document.createElement('div'); tmp.innerHTML = html; const ul = tmp.querySelector('ul'); if (!ul) return which === 'moves' ? '<div class="empty">No moves logged.</div>' : ''; $$('li', ul).forEach(li => { const isMeal = li.querySelector('[data-delm]'); const isMove = li.querySelector('[data-dela],[data-delw]'); if (which === 'meals' && !isMeal) li.remove(); if (which === 'moves' && !isMove) li.remove(); }); if (!ul.children.length) return which === 'moves' ? '<div class="empty">No moves logged.</div>' : ''; ul.dataset.day = k; return tmp.innerHTML; }
+function dayListFiltered(k, which) { const html = dayList(k); const tmp = document.createElement('div'); tmp.innerHTML = html; const ul = tmp.querySelector('ul'); if (!ul) return which === 'moves' ? '<div class="empty">No moves logged.</div>' : ''; $$('li', ul).forEach(li => { const isMeal = li.querySelector('[data-delm]'); const isMove = li.querySelector('[data-dela],[data-delw]'); const isHealth = li.querySelector('[data-del="check"],[data-delb]'); if (which === 'meals' && !isMeal) li.remove(); if (which === 'moves' && !isMove) li.remove(); if (which === 'health' && !isHealth) li.remove(); }); if (!ul.children.length) return which === 'moves' ? '<div class="empty">No moves logged.</div>' : ''; ul.dataset.day = k; return tmp.innerHTML; }
 
 /* ---------- TRAIN (gym cards, your routines, other exercise) ---------- */
 const UNITS = { 'lb': 'lb', 'lb/hand': 'lb/hand', 'bodyweight': 'reps only', 'sec': 'seconds' };
@@ -625,8 +715,25 @@ function renderTrends() {
     const pts = []; allWorkouts().forEach(w => (w.exercises || []).forEach(e => { if (e.key !== liftKey) return; let top = null; (e.sets || []).forEach(s => { if (s.wt != null && (!top || s.wt > top)) top = s.wt; }); if (top != null) pts.push({ k: w.date, v: top }); }));
     const spec = keys.find(e => e.key === liftKey) || { name: 'No lifts yet', unit: 'lb' }; const best = bestForExercise(liftKey);
     html = `<div class="card"><div class="field"><label>Movement</label><select id="liftSel">${keys.map(e => `<option value="${e.key}" ${e.key === liftKey ? 'selected' : ''}>${esc(e.name)}</option>`).join('')}</select></div><h2>${esc(spec.name)}</h2><p class="sub">Top set per session${best ? ` · best ${best.wt} ${spec.unit.split('/')[0]} × ${best.reps || '?'} on ${fmtShort(best.date)}` : ''}. Progress is measured across weeks, never one session's feelings.</p>${svgChart({ series: pts, avg: pts, days: trendRange || null })}</div>`;
+  } else if (trendTab === 'mind') {
+    const cd = checkDays(); const dy = Math.min(trendRange || 60, 60); const ser = key => cd.filter(c => c[key] != null).map(c => ({ k: c.k, v: c[key] }));
+    const sl = ser('sleepHrs'); const lastSl = sl.slice(-7).map(p => p.v); const k0 = addDays(todayKey(), -((trendRange || 365) - 1)); const inR = cd.filter(c => c.k >= k0);
+    const nmN = inR.filter(c => c.dreams === true).length, nmOf = inR.filter(c => c.dreams != null).length;
+    const small = ([key, label, hint]) => { const s = ser(key); return `<div class="card"><h2>${label}</h2><p class="sub">${hint}</p>${svgChart({ series: s, avg: s, yMin: 0, yMax: 10, height: 150, days: trendRange || null })}</div>`; };
+    html = `<div class="card">${rangeBtns}<h2>Sleep</h2><p class="sub">${lastSl.length ? `Last ${lastSl.length} logged night${lastSl.length === 1 ? '' : 's'} average ${r1(mean(lastSl))} hours.` : 'Hours from your check-ins.'}${nmOf ? ` Bad dreams on ${nmN} of ${nmOf} nights.` : ''} Dashed line is 7 hours.</p>${svgChart({ bars: sl, ref: 7, days: dy, yMin: 0 })}</div>`
+      + SCALES.map(small).join('')
+      + `<div class="card"><h2>Work hours</h2><p class="sub">Hours planned, and hours done.</p>${svgChart({ bars: ser('workPlanned'), bars2: ser('workDone'), days: dy, yMin: 0 })}<div class="legend"><span><i style="background:var(--pink)"></i>planned</span><span><i style="background:var(--lemon)"></i>done</span></div></div>`
+      + `<div class="card"><h2>Share a summary</h2><p class="sub">The check-ins and readings in this range as plain text, your notes included. It goes only where you paste it.</p><button class="btn sm" data-copydoc="1">Copy as text</button></div>`;
+  } else if (trendTab === 'bp') {
+    const k0 = addDays(todayKey(), -((trendRange || 3650) - 1)); const all = bpReadings().filter(b => b.k >= k0); const rest = all.filter(b => b.ctx === 'at rest');
+    const line = rest.length ? `At-rest average ${Math.round(mean(rest.map(b => b.sys)))}/${Math.round(mean(rest.map(b => b.dia)))} over ${rest.length} reading${rest.length === 1 ? '' : 's'}.` : 'No readings marked "at rest" in this range yet.';
+    const rows = all.slice().reverse().slice(0, 14).map(b => `<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 0">${fmtShort(b.k)} ${esc(b.t || '')}</td><td><b>${b.sys}/${b.dia}</b></td><td class="muted tiny">${esc([b.pulse ? 'pulse ' + b.pulse : '', b.ctx].filter(Boolean).join(' · '))}</td></tr>`).join('');
+    html = `<div class="card">${rangeBtns}<h2>Blood pressure</h2><p class="sub">${line} Dashed lines are 130 and 80, where the US guideline starts to call a resting reading high. Readings taken during work or after exercise run higher and are not judged by those lines.</p><h3 class="small muted">Top number</h3>${svgChart({ series: all.map(b => ({ k: b.k, v: b.sys })), ref: 130, height: 170, days: trendRange || null, yFmt: v => Math.round(v) })}<h3 class="small muted">Bottom number</h3>${svgChart({ series: all.map(b => ({ k: b.k, v: b.dia })), ref: 80, height: 170, days: trendRange || null, yFmt: v => Math.round(v) })}</div>`
+      + (rows ? `<div class="card"><h2>Recent readings</h2><table style="width:100%;border-collapse:collapse;font-size:.9rem">${rows}</table></div>` : '')
+      + `<div class="card"><h2>Share a summary</h2><p class="sub">The check-ins and readings in this range as plain text. It goes only where you paste it.</p><button class="btn sm" data-copydoc="1">Copy as text</button></div>`;
   }
   $('#trendBody').innerHTML = html;
+  $$('#trendBody [data-copydoc]').forEach(b => b.onclick = copySummaryText);
   $$('#trendBody [data-r]').forEach(b => b.onclick = () => { trendRange = Number(b.dataset.r); renderTrends(); });
   const sel = $('#liftSel'); if (sel) sel.onchange = e => { liftKey = e.target.value; renderTrends(); };
 }
